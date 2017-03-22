@@ -68,11 +68,8 @@ html {
 	border: 0px;
 	padding: 0;
 	background-color: #efefef;
+	outline: none;
 }
-/*
-#searchBar:active {
-}
-*/
 
 #dropBox {
 	position: absolute;
@@ -85,6 +82,7 @@ html {
 	border: 0;
 	border-radius: 5px;
 	background-color: #efefef; 
+	outline: none;
 }
 
 #submitButton {
@@ -98,6 +96,7 @@ html {
 	background-color: #3c78da;
 	padding: 0;
 	color: white;
+	outline: none;
 }
 
 #login {
