@@ -1,0 +1,117 @@
+body {
+	background-color: #f3f3f3;
+	margin: 0;
+	height: 100%;
+}
+
+html {
+	margin: 0;
+	height: 100%;
+}
+
+#header {
+	position: relative;
+	height: 50px;
+	background-color: white;
+	box-shadow: 0px 3px 7px #c0c0c0
+}
+
+#logo {
+	position: absolute;
+	top: calc((100% - 37px) / 2);
+	width: 16%;
+	min-width: 255px;
+	height: 37px;
+	text-align: center;
+	font-size: 28px;
+	float: left;
+	z-index: 2;
+}
+
+#text_car {
+	color: #3c78da;
+}
+
+#text_park {
+	color: #6aa84f;
+}
+
+#text_finder {
+	color: #ff9900;
+}
+
+#searchBox {
+	position: relative;
+	top: 20%;
+	left: 35%;
+	height: 60%;
+	width: 30%;
+	min-width: 462px;
+	text-align: center;
+	background-color: #efefef;
+	border: 0px; 
+	border-radius: 5px;
+	transition: 0.3s;
+	z-index: 1;
+}
+
+#searchBox:hover {
+	box-shadow: 0px 3px 5px #c0c0c0;
+}
+
+#searchBar {
+	position: absolute;
+	left: calc(15% + 1px); 
+	height: 100%;
+	width: 70%;
+	min-width:323px;
+	border: 0px;
+	padding: 0;
+	background-color: #efefef;
+}
+/*
+#searchBar:active {
+}
+*/
+
+#dropBox {
+	position: absolute;
+	height: 100%;
+	width: 15%;
+	min-width: 69px;
+	left: 0;
+	color: #66666d;
+	font-weight: bold;
+	border: 0;
+	border-radius: 5px;
+	background-color: #efefef; 
+}
+
+#submitButton {
+	position: absolute;
+	height:100%;
+	width: 15%;
+	min-width: 69px;
+	right: 0;
+	border: 0;
+	border-radius: 5px;
+	background-color: #3c78da;
+	padding: 0;
+	color: white;
+}
+
+#login {
+	position: absolute;
+	top: 30%;
+	right: 0;
+	height: 40%;
+	width: 16%;
+	float: right;
+	text-align: right;
+	padding-right: 2%;
+	z-index: 2;
+}
+
+#login a:link, a:visited {
+	color: #66666d;
+}
