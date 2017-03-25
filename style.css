@@ -2,6 +2,8 @@ body {
 	background-color: #f3f3f3;
 	margin: 0;
 	height: 100%;
+	min-width: 1000px;
+	font-family: "Microsoft Yahei", Tahoma, Helvetica, Arial, sans-serif;
 }
 
 html {
@@ -11,24 +13,22 @@ html {
 
 #header {
 	position: relative;
-	height: 100px;
+	height: 120px;
 	background-color: white;
-	box-shadow: 0px 3px 7px #c0c0c0
+	box-shadow: 0px 3px 7px #c0c0c0;
 }
 
 #logo {
 	position: absolute;
 	top: calc((50% - 37px) / 2);
-	width: 16%;
-	min-width: 255px;
-	height: 37px;
+	min-width: 338px;
 	padding-left: 2.5%;
-	font-size: 28px;
+	font-size: 200%;
 	left: 0;
 	z-index: 2;
 }
 
-#text_car {
+#text_brisbane{
 	color: #3c78da;
 }
 
@@ -44,7 +44,7 @@ html {
 	position: relative;
 	top: 10%;
 	left: 35%;
-	height: 30%;
+	height: 40%;
 	width: 30%;
 	min-width: 462px;
 	text-align: center;
@@ -61,21 +61,21 @@ html {
 
 #searchBar {
 	position: absolute;
-	left: calc(15% + 1px); 
+	left: 17%; 
 	height: 100%;
-	width: 70%;
+	width: 60%;
 	min-width:323px;
 	border: 0px;
 	padding: 0;
 	background-color: #efefef;
 	outline: none;
+	font-size: 110%;
 }
 
 #dropBox {
 	position: absolute;
 	height: 100%;
-	width: 15%;
-	min-width: 69px;
+	min-width: 84px;
 	left: 0;
 	color: #66666d;
 	font-weight: bold;
@@ -83,6 +83,7 @@ html {
 	border-radius: 5px;
 	background-color: #efefef; 
 	outline: none;
+	font-size: 110%;
 }
 
 #submitButton {
@@ -97,6 +98,7 @@ html {
 	padding: 0;
 	color: white;
 	outline: none;
+	font-size: 120%;
 }
 
 #login {
@@ -109,6 +111,8 @@ html {
 	text-align: right;
 	padding-right: 2%;
 	z-index: 2;
+	transition: 0.3s;
+	font-size: 100%;
 }
 
 #login a:link, a:visited {
@@ -146,7 +150,7 @@ html {
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;
-	font-size: 10pt;
+	font-size: 100%;
 	color: #999c9c;
 }
 
@@ -163,4 +167,62 @@ html {
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
+}
+
+#contentList {
+	width: 40%;
+	height: calc(100% - 140px);
+	margin-top: 10px;
+	overflow: auto;
+	float: right;
+	min-width: 433px;
+}
+
+#contentList a {
+	text-decoration: none;
+}
+
+.content {
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	width: 92%;
+	height: 12%;
+	min-height: 75px;
+	border-radius: 10px;
+	box-shadow: 0px 2px 5px #c0c0c0;
+	transition: 0.2s;
+	background-color: white;
+}
+
+.content:hover {
+	box-shadow: 0px 5px 8px #c0c0c0;
+}
+
+.contentTitle {
+	font-size: 200%;
+	font-width: bold;
+	color: #66666d;
+	margin-right: 10px;
+}
+
+.contentRating {
+	display: inline-block;
+}
+
+.contentRating img {
+	width: 25px;
+	height: 25px;
+}
+
+.contentDescription {
+	display: block;
+	font-size: 100%;
+	color: #999c9c;
+	margin-top: 4%;
+	overflow: hidden;
 }
