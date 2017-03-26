@@ -4,17 +4,10 @@
 		<meta charset="utf-8">
 		<title>Search Page</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-            <script>
-                var map;
-                function initMap() {
-                    map = new google.maps.Map(document.getElementById('map'), {
-                                              center: {lat: -34.397, lng: 150.644},
-                                              zoom: 8
-                                              });
-                }
-            </script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiQBcLHFTpkoWsFJgGwtDWQ52GH-KFS-w&callback=initMap">
-                </script>
+
+		<script src="script.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiQBcLHFTpkoWsFJgGwtDWQ52GH-KFS-w&callback=initMap"></script>
+
 	</head>
 
 	<body>	
@@ -34,7 +27,7 @@
 					</select>
 					
 					<input type="text" id="searchBar" name="searchBar" placeholder="Search car parks">
-					<input type="submit" id="submitButton" name="submitButton" value="Search">
+					<input type="submit" id="submitButton" value="Search">
 				</form>
 			</div>
 
@@ -54,104 +47,194 @@
 
 		</div>
 
-		<!--
-        <div id="map"></div>
-		-->
 
 		<div id="contentList">
-			<a href="">
-				<div class="content">
+			<a href="javascript:showDetailedInfo()">
+				<div class="contentCell">
 					<span class="contentTitle">Car Park 1</span>
 					<div class="contentRating">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
 					</div>
 					<span class="contentDescription">A short description</span>
 				</div>
 			</a>
 
-			<a href="">
-				<div class="content">
+			<a href="javascript:showDetailedInfo()">
+				<div class="contentCell">
 					<span class="contentTitle">Car Park 2</span>
 					<div class="contentRating">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
 					</div>
 					<span class="contentDescription">A short description</span>
 				</div>
 			</a>
 			
-			<a href="">
-				<div class="content">
+			<a href="javascript:showDetailedInfo()">
+				<div class="contentCell">
 					<span class="contentTitle">Car Park 3</span>
 					<div class="contentRating">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
 					</div>
 					<span class="contentDescription">A short description</span>
 				</div>
 			</a>
 			
-			<a href="">
-				<div class="content">
+			<a href="javascript:showDetailedInfo()">
+				<div class="contentCell">
 					<span class="contentTitle">Car Park 4</span>
 					<div class="contentRating">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
 					</div>
 					<span class="contentDescription">A short description</span>
 				</div>
 			</a>
 
-			<a href="">
-				<div class="content">
+			<a href="javascript:showDetailedInfo()">
+				<div class="contentCell">
 					<span class="contentTitle">Car Park 5</span>
 					<div class="contentRating">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
 					</div>
 					<span class="contentDescription">A short description</span>
 				</div>
 			</a>
 
-			<a href="">
-				<div class="content">
+			<a href="javascript:showDetailedInfo()">
+				<div class="contentCell">
 					<span class="contentTitle">Car Park 6</span>
 					<div class="contentRating">
-						<img src="imgs/star.svg">
-						<img src="imgs/star.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
 					</div>
 					<span class="contentDescription">A short description</span>
 				</div>
 			</a>
 
-			<a href="">
-				<div class="content">
+			<a href="javascript:showDetailedInfo()">
+				<div class="contentCell">
 					<span class="contentTitle">Car Park 7</span>
 					<div class="contentRating">
-						<img src="imgs/star.svg">
+						<img src="imgs/star1.svg">
 					</div>
 					<span class="contentDescription">A short description</span>
 				</div>
 			</a>
 
-			<a href="">
-				<div class="content">
+			<a href="javascript:showDetailedInfo()">
+				<div class="contentCell">
 					<span class="contentTitle">Car Park 8</span>
 					<div class="contentRating">
-						<img src="imgs/star.svg">
+						<img src="imgs/star1.svg">
 					</div>
 					<span class="contentDescription">A short description</span>
 				</div>
 			</a>
 
+		</div>
+
+		<div id="detailedInfo">
+
+			<div class="contentCell">
+				<span class="contentTitle">Car Park 1</span>
+				<div class="contentRating">
+					<img src="imgs/star1.svg">
+					<img src="imgs/star1.svg">
+					<img src="imgs/star1.svg">
+					<img src="imgs/star1.svg">
+				</div>
+				<span class="contentDescription">A short description</span>
+			</div>
+
+			<div id="commentList">
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+						<img src="imgs/star1.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+			</div>
+
+
+			<div id="commentBox">
+				<form action="" method="post">
+					<textarea id="commentArea" name="comment" placeholder="Leave a comment"></textarea>
+
+					<div class="commentRating">
+						<img src="imgs/star2.svg">
+						<img src="imgs/star2.svg">
+						<img src="imgs/star2.svg">
+						<img src="imgs/star2.svg">
+						<img src="imgs/star2.svg">
+					</div>
+
+					<input type="submit" id="commentSubmitButton" value="Submit">
+				</form>
+			</div>
+
+		</div>
+
+        <div id="mapWrapper">
+			<div id="map"></div>	
 		</div>
 
 	</body>
