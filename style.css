@@ -1,14 +1,10 @@
-body {
+body, html {
 	background-color: #f3f3f3;
 	margin: 0;
+	padding: 0;
 	height: 100%;
 	min-width: 1000px;
 	font-family: "Microsoft Yahei", Tahoma, Helvetica, Arial, sans-serif;
-}
-
-html {
-	margin: 0;
-	height: 100%;
 }
 
 #header {
@@ -163,7 +159,8 @@ html {
 #mapWrapper {
 	background: white;
 	width: 58%;
-	height: calc(100% - 150px);
+	height: calc(98% - 170px);
+	min-height: 575px;
 	margin-top: 10px;
 	margin-left: 10px;
 	padding: 5px;
@@ -179,7 +176,8 @@ html {
 
 #contentList {
 	width: 40%;
-	height: calc(100% - 140px);
+	height: calc(98% - 160px);
+	min-height: 584px;
 	margin-top: 10px;
 	overflow: auto;
 	float: right;
@@ -237,10 +235,10 @@ html {
 
 #detailedInfo {
 	width: 40%;
-	height: calc(100% - 140px);
+	height: calc(98% - 160px);
 	margin-top: 10px;
-	margin-bottom: 10px;
 	min-width: 433px;
+	min-height: 584px;
 	position: absolute;
 	right: 0;
 	display: none;
@@ -254,13 +252,13 @@ html {
 	padding-left: 20px;
 	padding-right: 10px;
 	width: 92%;
-	height: 60%;
+	height: calc(68% - 40px);
 	overflow: auto;
 }
 
 .commentCell {
 	width: 100%;
-	height: 20%;
+	height: 18%;
 	min-height: 75px;
 	padding-top: 10px;
 	padding-right: 10px;
@@ -282,8 +280,8 @@ html {
 }
 
 .commentRating img {
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 }
 
 .comment{
@@ -295,14 +293,11 @@ html {
 }
 
 #commentBox {
-	display: block;
 	background-color: white;
 	width: 92%;
-	min-height: 162px;
-	height: 22%;
+	height: 20%;
 	margin-left: auto;
 	margin-right: auto;
-	padding-top: 10px;
 	padding-left: 20px;
 	padding-right: 10px;
 }
@@ -313,7 +308,7 @@ html {
 }
 
 #commentArea {
-	height: 60%;
+	height: 50%;
 	width: 96%;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -331,12 +326,11 @@ html {
 	height: 25px;
 	border-radius: 5px;
 	background-color: #3c78da;
-	padding: 0;
 	color: white;
 	outline: none;
 	font-size: 90%;
 	float: right;
-	margin-right: 8px;
+	margin-right: 10px;
 }
 
 #loginBoxes {
@@ -431,8 +425,9 @@ html {
 
 #footer {
     text-align: center;
-    margin-top: 2%;
-    padding-bottom: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+	height: 2%;
 }
 
 #footerText {
