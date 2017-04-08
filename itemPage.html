@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Item Page</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+		<script src="script.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiQBcLHFTpkoWsFJgGwtDWQ52GH-KFS-w&callback=initMap"></script>
+
+	</head>
+
+	<body>	
+		<div id="header">
+			<div id="logo">
+				<span id="text_brisbane">Brisbane</span>
+				<span id="text_park">Park</span>
+				<span id="text_finder">Finder</span>
+			</div>
+
+			<div id="searchBox">
+				<form action="" method="get" onsubmit="return searchSubmit(this)">
+					<select id="typeSelector" name="typeSelector" onchange="typeSelectorChanged()">
+						<option value="name">Name</option>
+						<option value="suburb">Suburb</option>
+						<option value="rating">Rating</option>
+					</select>
+
+					<div id="ratingSelector" name="ratingSelector">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 3)">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 4)">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 5)">
+					</div>
+
+					<select id="suburbSelector" name="suburbSelector">
+						<option value="suburb">Suburb 1</option>
+						<option value="suburb">Suburb 2</option>
+						<option value="suburb">Suburb 3</option>
+						<option value="suburb">Suburb 4</option>
+						<option value="suburb">Suburb 5</option>
+						<option value="suburb">Suburb 6</option>
+						<option value="suburb">Suburb 7</option>
+						<option value="suburb">Suburb 8</option>
+						<option value="suburb">Suburb 9</option>
+					</select>
+					
+					<input type="text" id="searchBar" name="searchBar" placeholder="Search parks">
+					<input type="submit" id="submitButton" value="Search">
+				</form>
+			</div>
+
+			<div id="loginLink">
+				<a href="login.html">Log in</a>	
+			</div>
+
+			<div id="navigationBar">
+				<ul>
+					<li><a href="resultPage.html">Home</a></li>
+					<li><a href="">Nav1</a></li>
+					<li><a href="">Nav2</a></li>
+					<li><a href="">Nav3</a></li>
+					<li><a href="">Nav4</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div id="detailedInfo">
+
+			<div class="contentCell">
+				<span class="contentTitle">Park 1</span>
+				<div class="contentRating">
+					<img src="imgs/filledStar.svg">
+					<img src="imgs/filledStar.svg">
+					<img src="imgs/filledStar.svg">
+					<img src="imgs/filledStar.svg">
+				</div>
+				<span class="contentDescription">A short description</span>
+			</div>
+
+			<div id="commentList">
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+
+				<div class="commentCell">
+					<span class="commentTitle">User Name</span>
+					<div class="commentRating">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg">
+					</div>
+					<span class="comment">This is a comment</span>
+				</div>
+			</div>
+
+
+			<div id="commentBox">
+				<form action="" method="post">
+					<textarea id="commentArea" name="comment" placeholder="Leave a comment"></textarea>
+
+					<div class="commentRating">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 3)">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 4)">
+						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 5)">
+					</div>
+
+					<input type="submit" id="commentSubmitButton" value="Submit">
+				</form>
+			</div>
+
+		</div>
+
+        <div id="mapWrapper">
+			<div id="map"></div>	
+		</div>
+        
+        <div id="footer">
+            <span id="footerText">Made by Sean Li and Daniel Paten</span>
+        </div>
+
+	</body>
+</html>
