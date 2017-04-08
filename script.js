@@ -7,9 +7,6 @@ id_ratingSelector = 'ratingSelector';
 filledStar = 'imgs/filledStar.svg';
 unfilledStar = 'imgs/unfilledStar.svg';
 
-ratingScore = 0;
-
-
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: -27.3801, lng: 153.0387},
@@ -24,7 +21,7 @@ function typeSelectorChanged()
 	var type = document.getElementById(id_typeSelector).value;
 
 	// reset rating stars in the search box
-	resetRatingStars(document.getElementById(id_ratingSelector).children);
+	resetRatingStars(document.getElementById(id_ratingSelector));
 
 	if (type == 'suburb') {
 		showSuburbSelector();
@@ -81,30 +78,31 @@ function hideSearchBar()
  */
 function ratingStarClicked(ratingImg, index)
 {
-	var children = ratingImg.parentElement.children;
+	var parent = ratingImg.parentElement;
+	var children = parent.children;
 
-	resetRatingStars(children);
+	resetRatingStars(parent);
 
 	for (var i = 0; i < index; i++) {
 		children[i].src = filledStar;	
 	}
 
-	// restore the rating which will be sent to the server
+	// restore the rating to its parent node, which will be sent to the server
 	// when users click submit button.
-	ratingScore = index;
+	parent.value = index;
 }
 
 /* reset stars to default
  *
- * stars: the array of stars need to be reseted
+ * parent: the parent of stars need to be reseted
  */
-function resetRatingStars(stars)
+function resetRatingStars(parent)
 {
-	for (var i = 0; i < stars.length; i++) {
-		stars[i].src = unfilledStar;	
+	for (var i = 0; i < parent.children.length; i++) {
+		parent.children[i].src = unfilledStar;	
 	}
 
-	ratingScore = 0;
+	parent.value = 0;
 }
 
 /* simplify the interface between client side and server side
@@ -124,7 +122,7 @@ function searchSubmit(form)
 		searchBar.value = suburbSelector.value;
 
 	} else if (type == 'rating') {
-		searchBar.value = ratingScore; 
+		searchBar.value = ratingSelector.value; 
 	}
 
 	// remove these elements from form so that the data from them
