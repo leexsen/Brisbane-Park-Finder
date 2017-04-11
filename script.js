@@ -9,8 +9,37 @@ unfilledStar = 'imgs/unfilledStar.svg';
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: -27.3801, lng: 153.0387},
+		center: {lat: -27.38006149, lng: 153.0387005},
 		zoom: 12});
+
+	markers = showMapMarkers();
+	// set map center to the postion of the first result
+	map.center = markers[0].position;
+}
+
+function showMapMarkers()
+{
+	var markers = [];
+	var positions = document.getElementsByName('position');
+
+	for (var i = 0; i < positions.length; i++) {
+		var position = positions[i].getAttribute('value').split(',');
+		var data = {lat: parseFloat(position[0]), 
+					lng: parseFloat(position[1])};
+		
+		var marker = new google.maps.Marker({
+			position: data,
+			map: map
+		});
+		
+		marker.addListener('click', function() {
+			window.location.href = 'itemPage.html';
+		});
+
+		markers[i] = marker;
+	}
+
+	return markers;
 }
 
 /* it will hide or show elements of search box
