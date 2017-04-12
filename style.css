@@ -56,7 +56,7 @@ body, html {
 	transition: box-shadow 0.2s;
 }
 
-#searchBar {
+#searchBarHeader {
 	position: absolute;
 	left: 17%; 
 	height: 100%;
@@ -69,8 +69,19 @@ body, html {
 	font-size: 110%;
 }
 
-#typeSelector {
-	position: absolute;
+#searchBar {
+    height: 45px;
+    width: 20%;
+    min-width:323px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #efefef;
+    outline: none;
+    font-size: 100%;
+}
+
+#typeSelectorHeader {
+    position: absolute;
 	height: 100%;
 	min-width: 84px;
 	left: 0;
@@ -83,7 +94,21 @@ body, html {
 	font-size: 110%;
 }
 
-#suburbSelector {
+#typeSelector {
+    margin-top: 7%;
+    margin-bottom: 10%;
+    height: 35px;
+    min-width: 84px;
+    color: #66666d;
+    font-weight: bold;
+    border: 0;
+    border-radius: 5px;
+    background-color: #efefef;
+    outline: none;
+    font-size: 100%;
+}
+
+#suburbSelectorHeader {
 	position: absolute;
 	left: 17%; 
 	height: 100%;
@@ -94,10 +119,24 @@ body, html {
 	background-color: #efefef;
 	outline: none;
 	font-size: 110%;
-	visibility: hidden;
+    display: none;
 }
 
-#ratingSelector {
+#suburbSelector {
+    height: 45px;
+    min-height: 45px;
+    width: 20%;
+    min-width:323px;
+    border: 0px;
+    color: #66666d;
+    background-color: #efefef;
+    outline: none;
+    font-size: 110%;
+    display: none;
+}
+
+
+#ratingSelectorHeader {
 	position: absolute;
 	left: 17%; 
 	height: calc(100%-10px);
@@ -109,17 +148,32 @@ body, html {
 	outline: none;
 	display: inline-block;
 	text-align: left;
-	visibility: hidden;
+    display: none;
 }
 
-#ratingSelector img {
+#ratingSelector {
+    height:45px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 90px;
+    padding-right: 90px;
+    width: 20%;
+    min-width:323px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #efefef;
+    text-align: center;
+    display: none;
+}
+
+#ratingSelectorHeader img, #ratingSelector img {
 	height: 25px;
 	width: 25px;
 }
 
-#submitButton {
-	position: absolute;
-	height:100%;
+#submitButtonHeader {
+    position: absolute;
+    height: 100%;
 	width: 15%;
 	min-width: 69px;
 	right: 0;
@@ -130,6 +184,21 @@ body, html {
 	color: white;
 	outline: none;
 	font-size: 120%;
+}
+
+#submitButton {
+    height: 10%;
+    min-height: 45px;
+    width: 15%;
+    min-width: 69px;
+    right: 0;
+    border: 0;
+    border-radius: 5px;
+    background-color: #3c78da;
+    padding: 0;
+    color: white;
+    outline: none;
+    font-size: 120%;
 }
 
 #loginLink {
@@ -366,7 +435,7 @@ body, html {
 	margin-right: 10px;
 }
 
-#loginBoxes {
+#whiteBox {
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
@@ -381,7 +450,7 @@ body, html {
     text-align: center;
 }
 
-#loginText {
+#titleText {
     margin-left: auto;
     margin-right: auto;
     font-size: 250%;

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Item Page</title>
+		<title>NAME OF ITEM - Brisbane Park Finder</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 
 		<script src="script.js"></script>
@@ -18,46 +18,47 @@
 				<span id="text_finder">Finder</span>
 			</div>
 
-			<div id="searchBox">
+            <div id="searchBox">
 				<form action="" method="get" onsubmit="return searchSubmit(this)">
-					<select id="typeSelector" name="typeSelector" onchange="typeSelectorChanged()">
-						<option value="name">Name</option>
-						<option value="suburb">Suburb</option>
-						<option value="rating">Rating</option>
-					</select>
-
-					<div id="ratingSelector" name="ratingSelector">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 3)">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 4)">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 5)">
-					</div>
-
-					<select id="suburbSelector" name="suburbSelector">
-						<option value="suburb">Suburb 1</option>
-						<option value="suburb">Suburb 2</option>
-						<option value="suburb">Suburb 3</option>
-						<option value="suburb">Suburb 4</option>
-						<option value="suburb">Suburb 5</option>
-						<option value="suburb">Suburb 6</option>
-						<option value="suburb">Suburb 7</option>
-						<option value="suburb">Suburb 8</option>
-						<option value="suburb">Suburb 9</option>
-					</select>
-					
-					<input type="text" id="searchBar" name="searchBar" placeholder="Search parks">
-					<input type="submit" id="submitButton" value="Search">
-				</form>
-			</div>
+                    <select id="typeSelectorHeader" name="typeSelector" onchange="typeSelectorChanged()">
+                        <option value="name">Name</option>
+                        <option value="suburb">Suburb</option>
+                        <option value="rating">Rating</option>
+                        <option value="location">Location</option>
+                    </select>
+                    
+                    <div id="ratingSelectorHeader" name="ratingSelector">
+                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
+                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
+                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 3)">
+                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 4)">
+                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 5)">
+                    </div>
+                    
+                    <select id="suburbSelectorHeader" name="suburbSelector">
+                        <option value="suburb">Suburb 1</option>
+                        <option value="suburb">Suburb 2</option>
+                        <option value="suburb">Suburb 3</option>
+                        <option value="suburb">Suburb 4</option>
+                        <option value="suburb">Suburb 5</option>
+                        <option value="suburb">Suburb 6</option>
+                        <option value="suburb">Suburb 7</option>
+                        <option value="suburb">Suburb 8</option>
+                        <option value="suburb">Suburb 9</option>
+                    </select>
+                    
+                    <input type="text" id="searchBarHeader" name="searchBar" placeholder="Search parks">
+                    <input type="submit" id="submitButtonHeader" formaction="resultPage.html" value="Search">
+                </form>
+            </div>
 
 			<div id="loginLink">
-				<a href="login.html">Log in</a>	
+				<a href="login.html">Login</a>	
 			</div>
 
 			<div id="navigationBar">
 				<ul>
-					<li><a href="resultPage.html">Home</a></li>
+					<li><a href="searchPage.html">Home</a></li>
 					<li><a href="">Nav1</a></li>
 					<li><a href="">Nav2</a></li>
 					<li><a href="">Nav3</a></li>
