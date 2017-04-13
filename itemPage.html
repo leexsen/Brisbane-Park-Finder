@@ -19,7 +19,7 @@
 			</div>
 
             <div id="searchBox">
-				<form action="" method="get" onsubmit="return searchSubmit(this)">
+				<form action="none" method="get" onsubmit="return searchSubmit(this)">
                     <select id="typeSelectorHeader" name="typeSelector" onchange="typeSelectorChanged()">
                         <option value="name">Name</option>
                         <option value="suburb">Suburb</option>
@@ -28,11 +28,11 @@
                     </select>
                     
                     <div id="ratingSelectorHeader" name="ratingSelector">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 3)">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 4)">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 5)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 1)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 2)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 3)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 4)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 5)">
                     </div>
                     
                     <select id="suburbSelectorHeader" name="suburbSelector">
@@ -71,23 +71,23 @@
 			<div class="contentCell">
 				<span class="contentTitle">7TH BRIGADE PARK</span>
 				<div class="contentRating">
-					<img src="imgs/filledStar.svg">
-					<img src="imgs/filledStar.svg">
-					<img src="imgs/filledStar.svg">
-					<img src="imgs/filledStar.svg">
+					<img src="imgs/filledStar.svg" alt="stars">
+					<img src="imgs/filledStar.svg" alt="stars">
+					<img src="imgs/filledStar.svg" alt="stars">
+					<img src="imgs/filledStar.svg" alt="stars">
 				</div>
 				<span class="contentDescription">HAMILTON RD, CHERMSIDE</span>
-				<data name="position" value="-27.38006149,153.0387005"></data>
+				<data value="-27.38006149,153.0387005"></data>
 			</div>
 
 			<div id="commentList">
 				<div class="commentCell">
 					<span class="commentTitle">User Name</span>
 					<div class="commentRating">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
 					</div>
 					<span class="comment">This is a comment</span>
 				</div>
@@ -95,10 +95,10 @@
 				<div class="commentCell">
 					<span class="commentTitle">User Name</span>
 					<div class="commentRating">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
 					</div>
 					<span class="comment">This is a comment</span>
 				</div>
@@ -106,10 +106,10 @@
 				<div class="commentCell">
 					<span class="commentTitle">User Name</span>
 					<div class="commentRating">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
 					</div>
 					<span class="comment">This is a comment</span>
 				</div>
@@ -117,10 +117,10 @@
 				<div class="commentCell">
 					<span class="commentTitle">User Name</span>
 					<div class="commentRating">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
 					</div>
 					<span class="comment">This is a comment</span>
 				</div>
@@ -128,10 +128,10 @@
 				<div class="commentCell">
 					<span class="commentTitle">User Name</span>
 					<div class="commentRating">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
-						<img src="imgs/filledStar.svg">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
+						<img src="imgs/filledStar.svg" alt="stars">
 					</div>
 					<span class="comment">This is a comment</span>
 				</div>
@@ -139,15 +139,15 @@
 
 
 			<div id="commentBox">
-				<form action="" method="post">
+				<form action="none" method="post">
 					<textarea id="commentArea" name="comment" placeholder="Leave a comment"></textarea>
 
 					<div class="commentRating">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 3)">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 4)">
-						<img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 5)">
+						<img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 1)">
+						<img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 2)">
+						<img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 3)">
+						<img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 4)">
+						<img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 5)">
 					</div>
 
 					<input type="submit" id="commentSubmitButton" value="Submit">

@@ -18,7 +18,7 @@
 			</div>
 
             <div id="searchBox">
-				<form action="" method="get" onsubmit="return searchSubmit(this)">
+				<form action="none" method="get" onsubmit="return searchSubmit(this)">
                     <select id="typeSelectorHeader" name="typeSelector" onchange="typeSelectorChanged()">
                         <option value="name">Name</option>
                         <option value="suburb">Suburb</option>
@@ -27,11 +27,11 @@
                     </select>
                     
                     <div id="ratingSelectorHeader" name="ratingSelector">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 3)">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 4)">
-                        <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 5)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 1)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 2)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 3)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 4)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 5)">
                     </div>
                     
                     <select id="suburbSelectorHeader" name="suburbSelector">
@@ -63,7 +63,7 @@
         
         <div id="whiteBox">
             <span id="titleText">Login</span><br>
-            <form action="" method="get" onsubmit="return loginSubmit(this)">
+            <form action="none" method="get" onsubmit="return loginSubmit(this)">
                 <input type="email" id="loginFormTop" name="emailForm" placeholder=" Email" onkeypress="clearError()" required>
                 <input type="password" class="loginForm" name="passwordForm" placeholder=" Password" onkeypress="clearError()" required><br>
                 <input type="submit" id="loginButton" value="Login">

@@ -20,7 +20,7 @@ function initMap() {
 function showMapMarkers()
 {
 	var markers = [];
-	var positions = document.getElementsByName('position');
+	var positions = document.getElementsByTagName('data');
 
 	for (var i = 0; i < positions.length; i++) {
 		var position = positions[i].getAttribute('value').split(',');

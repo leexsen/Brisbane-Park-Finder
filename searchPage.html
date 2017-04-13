@@ -33,7 +33,7 @@
         
         <div id="whiteBox">
             <span id="titleText">Search By</span><br>
-            <form action="" method="get" onsubmit="return searchSubmit(this)">
+            <form action="none" method="get" onsubmit="return searchSubmit(this)">
                 <select id="typeSelector" name="typeSelector" onchange="typeSelectorChanged()">
                     <option value="name">Name</option>
                     <option value="suburb">Suburb</option>
@@ -42,11 +42,11 @@
                 </select><br>
                 
                 <div id="ratingSelector" name="ratingSelector">
-                    <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
-                    <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
-                    <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 3)">
-                    <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 4)">
-                    <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 5)">
+                    <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 1)">
+                    <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 2)">
+                    <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 3)">
+                    <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 4)">
+                    <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 5)">
                 </div>
                 
                 <select id="suburbSelector" name="suburbSelector">
