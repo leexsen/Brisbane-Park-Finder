@@ -119,8 +119,8 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    var searchBox = document.getElementsByName(name_searchBar)[0];
-    searchBox.placeholder = position.coords.latitude + ", " + position.coords.longitude;
+    var searchBar = document.getElementsByName(name_searchBar)[0];
+    searchBar.value = position.coords.latitude + ", " + position.coords.longitude;
 }
 
 
@@ -141,7 +141,8 @@ function showError(error) {
             msg = " An unknown error occurred."
             break;
     }
-    searchBox.placeholder = msg;
+    searchBar.value = "";
+    searchBar.placeholder = msg;
 }
 
 /* when a unfilled rating star with a index is clicked, all stars before
