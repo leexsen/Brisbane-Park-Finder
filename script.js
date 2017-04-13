@@ -110,11 +110,11 @@ function hideSearchBar()
 // These functions get the user's current location and puts it in the search box automatically.
 // If the user cannot do geolocation the appropriate message is shown.
 function getLocation() {
-    var searchBox = document.getElementsByName(name_searchBar)[0];
+    var searchBar = document.getElementsByName(name_searchBar)[0];
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
-        searchBox.innerHTML = " Geolocation is not supported by your browser.";
+        searchBar.innerHTML = " Geolocation is not supported by your browser.";
     }
 }
 
@@ -125,7 +125,7 @@ function showPosition(position) {
 
 
 function showError(error) {
-    var searchBox = document.getElementsByName(name_searchBar)[0];
+    var searchBar = document.getElementsByName(name_searchBar)[0];
     var msg = "";
     switch(error.code) {
         case error.PERMISSION_DENIED:
@@ -206,4 +206,40 @@ function searchSubmit(form)
     form.removeChild(suburbSelector);
     
     return true;
+}
+
+// Checks if the user's form data matches with the server's data and logs them in if so.
+function loginSubmit() {
+    var id_badLogin = document.getElementById("badLogin");
+    
+    // The following is just a hackish way to test both success and failure of the form.
+    // This code will change once server side validation is active.
+    var chanceOfSuccess = Math.floor(Math.random() * 2);
+    
+    if (chanceOfSuccess == 0) {
+        id_badLogin.innerHTML = "Incorrect login. Please try again.";
+        id_badLogin.style.display = 'initial';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Adds the user's form data to the server's data and logs them in.
+function registerSubmit(form) {
+    var id_badLogin = document.getElementById("badLogin");
+    
+    if (form.passwordForm.value != form.confirmForm.value) {
+        id_badLogin.innerHTML = "Ensure the password fields match.";
+        id_badLogin.style.display = 'initial';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Clears the error message
+function clearError() {
+    document.getElementById("badLogin").style.display = 'none';
+    
 }

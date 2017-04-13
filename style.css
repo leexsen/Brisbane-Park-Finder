@@ -140,7 +140,7 @@ body, html {
 #ratingSelectorHeader {
 	position: absolute;
 	left: 17%; 
-	height: calc(100%-10px);
+	height: calc(100% - 10px);
 	width: 64%;
 	border: 0px;
 	padding-top: 10px;
@@ -261,7 +261,7 @@ body, html {
 
 #mapWrapper {
 	background: white;
-	width: 58%;
+	width: 53%;
 	height: calc(98% - 170px);
 	min-height: 575px;
 	margin-top: 10px;
@@ -278,7 +278,7 @@ body, html {
 }
 
 #contentList {
-	width: 40%;
+	width: 45%;
 	height: calc(98% - 160px);
 	min-height: 584px;
 	margin-top: 10px;
@@ -295,12 +295,12 @@ body, html {
 	margin-bottom: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	padding-top: 10px;
+	padding-top: 15px;
 	padding-left: 20px;
 	padding-right: 10px;
 	padding-bottom: 10px;
 	width: 92%;
-	height: 12%;
+	height: 14%;
 	min-height: 75px;
 	border-radius: 10px;
 	box-shadow: 0px 2px 5px #c0c0c0;
@@ -313,8 +313,8 @@ body, html {
 }
 
 .contentTitle {
-	font-size: 200%;
-	font-width: bold;
+	font-size: 140%;
+	font-weight: bold;
 	color: #66666d;
 	margin-right: 10px;
 }
@@ -324,20 +324,20 @@ body, html {
 }
 
 .contentRating img {
-	width: 25px;
-	height: 25px;
+	width: 22px;
+	height: 22px;
 }
 
 .contentDescription {
 	display: block;
-	font-size: 100%;
+	font-size: 95%;
 	color: #999c9c;
 	margin-top: 4%;
 	overflow: hidden;
 }
 
 #detailedInfo {
-	width: 40%;
+	width: 45%;
 	height: calc(98% - 160px);
 	margin-top: 10px;
 	min-width: 433px;
@@ -371,8 +371,7 @@ body, html {
 }
 
 .commentTitle {
-	font-size: 160%;
-	font-width: bold;
+	font-size: 140%;
 	color: #66666d;
 	margin-right: 10px;
 }
@@ -388,7 +387,7 @@ body, html {
 
 .comment{
 	display: block;
-	font-size: 100%;
+	font-size: 95%;
 	color: #999c9c;
 	margin-top: 4%;
 	overflow: hidden;
@@ -417,6 +416,7 @@ body, html {
 	border-radius: 10px;
 	border-color: #d1e6c8;
 	color: #66666d;
+    font-size: 80%;
 	padding: 8px;
 	outline: none;
 	resize: none;
@@ -440,10 +440,9 @@ body, html {
     margin-right: auto;
     margin-top: 2%;
     margin-bottom: 2%;
-    padding-top: 5%;
-    height: 100%;
-    max-height:400px;
-    max-width: 500px;
+    padding-top: 75px;
+    height: 575px;
+    max-width: 600px;
     background-color: #FFFFFF;
     border-radius: 5px;
     box-shadow: 0px 3px 7px #c0c0c0;
@@ -453,7 +452,7 @@ body, html {
 #titleText {
     margin-left: auto;
     margin-right: auto;
-    font-size: 250%;
+    font-size: 275%;
     color: #808080;
 }
 
@@ -461,63 +460,60 @@ body, html {
     margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
-    height: 10%;
-    max-height: 40px;
-    width: 20%;
-    min-width:323px;
+    height: 50px;
+    width: 40%;
+    min-width: 350px;
     border: #d3d3d3 solid thin;
     border-radius: 5px;
     background-color: #efefef;
-    font-size: 90%;
+    font-size: 120%;
 }
 
 .loginForm {
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
-    height: 10%;
-    max-height: 40px;
-    width: 20%;
-    min-width:323px;
+    height: 50px;
+    width: 40%;
+    min-width: 350px;
     border: #d3d3d3 solid thin;
     border-radius: 5px;
     background-color: #efefef;
-    font-size: 90%;
+    font-size: 120%;
 }
 
 .loginFormHalf {
     margin-top: 10%;
     margin-left: 2%;
     margin-right: 2%;
-    height: 10%;
-    max-height: 40px;
-    width: 10%;
-    min-width:148px;
+    height: 50px;
+    width: 20%;
+    min-width: 162px;
     border: #d3d3d3 solid thin;
     border-radius: 5px;
     background-color: #efefef;
-    font-size: 90%;
+    font-size: 120%;
 }
 
 #loginButton {
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
-    height: 10%;
-    max-height: 35px;
-    width: 10%;
-    min-width: 69px;
+    margin-bottom: 5%;
+    height: 45px;
+    width: 20%;
+    min-width: 70px;
     border: 0;
     border-radius: 5px;
     background-color: #3c78da;
     padding: 0;
     color: white;
     outline: none;
-    font-size: 90%;
+    font-size: 110%;
 }
 
 #loginOrRegisterText {
-    font-size: 70%;
+    font-size: 100%;
     position: relative;
 }
 
@@ -525,10 +521,16 @@ body, html {
     color: #66666d;
 }
 
+#badLogin {
+    font-size: 110%;
+    color: red;
+    display: none;
+}
+
 #footer {
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 30px;
 	height: 2%;
 }
 

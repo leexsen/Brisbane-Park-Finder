@@ -23,26 +23,24 @@
 
 			<div id="navigationBar">
 				<ul>
-					<li><a href="searchPage.html">Home</a></li>
-					<li><a href="">Nav1</a></li>
-					<li><a href="">Nav2</a></li>
-					<li><a href="">Nav3</a></li>
-					<li><a href="">Nav4</a></li>
+                    <li><a href="searchPage.html">Home</a></li>
+                    <li><a href="resultPage.html">All Parks</a></li>
+                    <li><a href="itemPage.html">Random Park</a></li>
 				</ul>
 			</div>
 
 		</div>
         
         <div id="whiteBox">
-            <span id="titleText">Search By</span></br>
+            <span id="titleText">Search By</span><br>
             <form action="" method="get" onsubmit="return searchSubmit(this)">
                 <select id="typeSelector" name="typeSelector" onchange="typeSelectorChanged()">
                     <option value="name">Name</option>
                     <option value="suburb">Suburb</option>
                     <option value="rating">Rating</option>
                     <option value="location">Location</option>
-                </select>
-                </br>
+                </select><br>
+                
                 <div id="ratingSelector" name="ratingSelector">
                     <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 1)">
                     <img src="imgs/unfilledStar.svg" onclick="ratingStarClicked(this, 2)">
