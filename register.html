@@ -1,66 +1,56 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Register - Brisbane Park Finder</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-
-		<script src="script.js"></script>
-
-	</head>
-
-	<body>	
-		<div id="header">
-			<div id="logo">
-				<span id="text_brisbane">Brisbane</span>
-				<span id="text_park">Park</span>
-				<span id="text_finder">Finder</span>
-			</div>
-
+    <head>
+        <meta charset="utf-8">
+        <title>Register - Brisbane Park Finder</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <span id="text_brisbane">Brisbane</span>
+                <span id="text_park">Park</span>
+                <span id="text_finder">Finder</span>
+            </div>
             <div id="searchBox">
-				<form action="none" method="get" onsubmit="return searchSubmit(this)">
-                    <select id="typeSelectorHeader" name="typeSelector" onchange="typeSelectorChanged()">
+                <form action="none" method="get" onsubmit="return searchSubmit(this)">
+                    <select id="typeSelectorHeader" class="typeSelector_name" name="typeSelector" onchange="typeSelectorChanged()">
                         <option value="name">Name</option>
                         <option value="suburb">Suburb</option>
                         <option value="rating">Rating</option>
                         <option value="location">Location</option>
                     </select>
-                    
-                    <div id="ratingSelectorHeader" name="ratingSelector">
-                        <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 1)">
-                        <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 2)">
-                        <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 3)">
-                        <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 4)">
-                        <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 5)">
+                    <div id="ratingSelectorHeader" class="ratingSelector_name">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 1)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 2)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 3)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 4)">
+                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 5)">
                     </div>
-                    
-                    <select id="suburbSelectorHeader" name="suburbSelector">
-                        <option value="suburb">Suburb 1</option>
-                        <option value="suburb">Suburb 2</option>
-                        <option value="suburb">Suburb 3</option>
-                        <option value="suburb">Suburb 4</option>
-                        <option value="suburb">Suburb 5</option>
-                        <option value="suburb">Suburb 6</option>
-                        <option value="suburb">Suburb 7</option>
-                        <option value="suburb">Suburb 8</option>
-                        <option value="suburb">Suburb 9</option>
+                    <select id="suburbSelectorHeader" class="suburbSelector_name">
+                        <option value="suburb1">Suburb 1</option>
+                        <option value="suburb2">Suburb 2</option>
+                        <option value="suburb3">Suburb 3</option>
+                        <option value="suburb4">Suburb 4</option>
+                        <option value="suburb5">Suburb 5</option>
+                        <option value="suburb6">Suburb 6</option>
+                        <option value="suburb7">Suburb 7</option>
+                        <option value="suburb8">Suburb 8</option>
+                        <option value="suburb9">Suburb 9</option>
                     </select>
-                    
-                    <input type="text" id="searchBarHeader" name="searchBar" placeholder=" Search parks">
+                    <input type="text" id="searchBarHeader" class="searchBar_name" name="value" placeholder="Search parks">
                     <input type="submit" id="submitButtonHeader" formaction="resultPage.html" value="Search">
                 </form>
             </div>
-
-			<div id="navigationBar">
-				<ul>
+            <div id="navigationBar">
+                <ul>
                     <li><a href="searchPage.html">Home</a></li>
                     <li><a href="resultPage.html">All Parks</a></li>
                     <li><a href="itemPage.html">Random Park</a></li>
-				</ul>
-			</div>
-
-		</div>
-        
+                </ul>
+            </div>
+        </div>
         <div id="whiteBox">
             <span id="titleText">Register</span><br>
             <form action="none" method="get" onsubmit="return registerSubmit(this)">
@@ -77,5 +67,5 @@
         <div id="footer">
             <span id="footerText">Made by Sean Li and Daniel Paten</span>
         </div>
-	</body>
+    </body>
 </html>

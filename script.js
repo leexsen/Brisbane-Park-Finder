@@ -1,7 +1,7 @@
-name_searchBar = 'searchBar';
-name_typeSelector= 'typeSelector';
-name_suburbSelector = 'suburbSelector';
-name_ratingSelector = 'ratingSelector';
+name_searchBar = 'searchBar_name';
+name_typeSelector= 'typeSelector_name';
+name_suburbSelector = 'suburbSelector_name';
+name_ratingSelector = 'ratingSelector_name';
 
 // the file path
 filledStar = 'imgs/filledStar.svg';
@@ -47,11 +47,11 @@ function showMapMarkers()
  */
 function typeSelectorChanged()
 {
-    var type = document.getElementsByName(name_typeSelector)[0].value;
+    var type = document.getElementsByClassName(name_typeSelector)[0].value;
     
     
     // reset rating stars in the search box
-    resetRatingStars(document.getElementsByName(name_ratingSelector)[0]);
+    resetRatingStars(document.getElementsByClassName(name_ratingSelector)[0]);
 
     if (type == 'name') {
         showSearchBar();
@@ -78,39 +78,39 @@ function typeSelectorChanged()
 
 function showSuburbSelector()
 {
-    document.getElementsByName(name_suburbSelector)[0].style.display = 'initial';
+    document.getElementsByClassName(name_suburbSelector)[0].style.display = 'initial';
 }
 
 function hideSuburbSelector()
 {
-    document.getElementsByName(name_suburbSelector)[0].style.display = 'none';
+    document.getElementsByClassName(name_suburbSelector)[0].style.display = 'none';
 }
 
 function showRatingSelector()
 {
-    document.getElementsByName(name_ratingSelector)[0].style.display = 'initial';
+    document.getElementsByClassName(name_ratingSelector)[0].style.display = 'initial';
 }
 
 function hideRatingSelector()
 {
-    document.getElementsByName(name_ratingSelector)[0].style.display = 'none';
+    document.getElementsByClassName(name_ratingSelector)[0].style.display = 'none';
 }
 
 function showSearchBar()
 {
-    document.getElementsByName(name_searchBar)[0].style.display = 'initial';
-    document.getElementsByName(name_searchBar)[0].placeholder = ' Search parks';
+    document.getElementsByClassName(name_searchBar)[0].style.display = 'initial';
+    document.getElementsByClassName(name_searchBar)[0].placeholder = ' Search parks';
 }
 
 function hideSearchBar()
 {
-    document.getElementsByName(name_searchBar)[0].style.display = 'none';
+    document.getElementsByClassName(name_searchBar)[0].style.display = 'none';
 }
 
 // These functions get the user's current location and puts it in the search box automatically.
 // If the user cannot do geolocation the appropriate message is shown.
 function getLocation() {
-    var searchBar = document.getElementsByName(name_searchBar)[0];
+    var searchBar = document.getElementsByClassName(name_searchBar)[0];
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
@@ -119,13 +119,13 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    var searchBar = document.getElementsByName(name_searchBar)[0];
+    var searchBar = document.getElementsByClassName(name_searchBar)[0];
     searchBar.value = position.coords.latitude + ", " + position.coords.longitude;
 }
 
 
 function showError(error) {
-    var searchBar = document.getElementsByName(name_searchBar)[0];
+    var searchBar = document.getElementsByClassName(name_searchBar)[0];
     var msg = "";
     switch(error.code) {
         case error.PERMISSION_DENIED:
@@ -188,10 +188,10 @@ function resetRatingStars(parent)
  */
 function searchSubmit(form)
 {
-    var ratingSelector = document.getElementsByName(name_ratingSelector)[0];
-    var suburbSelector = document.getElementsByName(name_suburbSelector)[0];
-    var searchBar = document.getElementsByName(name_searchBar)[0];
-    var type = document.getElementsByName(name_typeSelector)[0].value;
+    var ratingSelector = document.getElementsByClassName(name_ratingSelector)[0];
+    var suburbSelector = document.getElementsByClassName(name_suburbSelector)[0];
+    var searchBar = document.getElementsByClassName(name_searchBar)[0];
+    var type = document.getElementsByClassName(name_typeSelector)[0].value;
     
     if (type == 'suburb') {
         searchBar.value = suburbSelector.value;
