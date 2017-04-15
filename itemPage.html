@@ -7,6 +7,7 @@
         <script src="script.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiQBcLHFTpkoWsFJgGwtDWQ52GH-KFS-w&callback=initMap"></script>
     </head>
+
     <body>
         <div id="header">
             <div id="logo">
@@ -14,6 +15,7 @@
                 <span id="text_park">Park</span>
                 <span id="text_finder">Finder</span>
             </div>
+
             <div id="searchBox">
                 <form action="none" method="get" onsubmit="return searchSubmit(this)">
                     <select id="typeSelectorHeader" class="typeSelector_name" name="typeSelector" onchange="typeSelectorChanged()">
@@ -22,6 +24,7 @@
                         <option value="rating">Rating</option>
                         <option value="location">Location</option>
                     </select>
+
                     <div id="ratingSelectorHeader" class="ratingSelector_name">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 1)">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 2)">
@@ -29,6 +32,7 @@
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 4)">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 5)">
                     </div>
+
                     <select id="suburbSelectorHeader" class="suburbSelector_name">
                         <option value="suburb1">Suburb 1</option>
                         <option value="suburb2">Suburb 2</option>
@@ -44,9 +48,11 @@
                     <input type="submit" id="submitButtonHeader" formaction="resultPage.html" value="Search">
                 </form>
             </div>
+
             <div id="loginLink">
                 <a href="login.html">Login</a>	
             </div>
+
             <div id="navigationBar">
                 <ul>
                     <li><a href="searchPage.html">Home</a></li>
@@ -55,6 +61,7 @@
                 </ul>
             </div>
         </div>
+
         <div id="detailedInfo">
             <div class="contentCell">
                 <span class="contentTitle">7TH BRIGADE PARK</span>
@@ -66,6 +73,7 @@
                 <span class="contentDescription">HAMILTON RD, CHERMSIDE</span>
                 <data value="-27.38006149,153.0387005"></data>
             </div>
+
             <div id="commentList">
                 <div class="commentCell">
                     <span class="commentTitle">Leonhard Euler</span>
@@ -77,6 +85,7 @@
                     </div>
                     <span class="comment">This is a beautiful park, I love it</span>
                 </div>
+
                 <div class="commentCell">
                     <span class="commentTitle">Lsaac Newton</span>
                     <div class="commentRating">
@@ -86,6 +95,7 @@
                     </div>
                     <span class="comment">This is where I got hit by an apple</span>
                 </div>
+
                 <div class="commentCell">
                     <span class="commentTitle">Alan Turing</span>
                     <div class="commentRating">
@@ -95,6 +105,7 @@
                     </div>
                     <span class="comment">It's good generally but it's a little bit small</span>
                 </div>
+
                 <div class="commentCell">
                     <span class="commentTitle">John von Neumann</span>
                     <div class="commentRating">
@@ -104,6 +115,7 @@
                     </div>
                     <span class="comment">It's nice and quiet</span>
                 </div>
+
                 <div class="commentCell">
                     <span class="commentTitle">Ada Lovelace</span>
                     <div class="commentRating">
@@ -113,6 +125,7 @@
                     <span class="comment">Not too bad</span>
                 </div>
             </div>
+
             <div id="commentBox">
                 <form action="none" method="post">
                     <textarea id="commentArea" name="comment" placeholder="Leave a comment"></textarea>
@@ -127,9 +140,11 @@
                 </form>
             </div>
         </div>
+
         <div id="mapWrapper">
             <div id="map"></div>
         </div>
+
         <div id="footer">
             <span id="footerText">Made by Sean Li and Daniel Paten</span>
         </div>

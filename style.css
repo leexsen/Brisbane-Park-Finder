@@ -70,14 +70,18 @@ body, html {
 
 #searchBar {
     height: 45px;
-    width: 20%;
-    min-width:323px;
+    width: 52%;
+    min-width:314px;
     border: 0px;
     border-radius: 5px;
     background-color: #efefef;
 	color:#66666d;
     outline: none;
     font-size: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 10px;
+	display: inline-block;
 }
 
 #typeSelectorHeader {
@@ -120,20 +124,22 @@ body, html {
 	background-color: #efefef;
 	outline: none;
 	font-size: 110%;
-    display: none;
+	display: none;
 }
 
 #suburbSelector {
     height: 45px;
     min-height: 45px;
-    width: 20%;
-    min-width:323px;
+    width: 54%;
+    min-width:324px;
     border: 0px;
     color: #66666d;
     background-color: #efefef;
     outline: none;
     font-size: 110%;
-    display: none;
+	border-radius: 5px;
+	padding-left: 10px;
+	display: none;
 }
 
 
@@ -147,24 +153,21 @@ body, html {
 	padding-left: 10px;
 	background-color: #efefef;
 	outline: none;
-	display: inline-block;
 	text-align: left;
-    display: none;
+	display: none;
 }
 
 #ratingSelector {
-    height:45px;
-    padding-top: 20px;
+    height: 25px;
+    padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 90px;
-    padding-right: 90px;
-    width: 20%;
-    min-width:323px;
+    width: 54%;
+    min-width:324px;
     border: 0px;
     border-radius: 5px;
     background-color: #efefef;
     text-align: center;
-    display: none;
+	display: none;
 }
 
 #ratingSelectorHeader img, #ratingSelector img {
@@ -188,11 +191,11 @@ body, html {
 }
 
 #submitButton {
-    height: 10%;
+    position: absolute;
+    height: 4%;
     min-height: 45px;
-    width: 15%;
+    width: 3%;
     min-width: 69px;
-    right: 0;
     border: 0;
     border-radius: 5px;
     background-color: #3c78da;
@@ -467,6 +470,7 @@ body, html {
     border-radius: 5px;
     background-color: #efefef;
     font-size: 120%;
+	padding-left: 10px;
 }
 
 .loginForm {
@@ -480,15 +484,17 @@ body, html {
     border-radius: 5px;
     background-color: #efefef;
     font-size: 120%;
+	padding-left: 10px;
 }
 
 .loginFormHalf {
+	padding-left: 10px;
     margin-top: 10%;
     margin-left: 2%;
     margin-right: 2%;
     height: 50px;
-    width: 20%;
-    min-width: 162px;
+    width: 25.7%;
+    min-width: 154px;
     border: #d3d3d3 solid thin;
     border-radius: 5px;
     background-color: #efefef;

@@ -78,7 +78,7 @@ function typeSelectorChanged()
 
 function showSuburbSelector()
 {
-    document.getElementsByClassName(name_suburbSelector)[0].style.display = 'initial';
+    document.getElementsByClassName(name_suburbSelector)[0].style.display = 'inline-block';
 }
 
 function hideSuburbSelector()
@@ -88,7 +88,7 @@ function hideSuburbSelector()
 
 function showRatingSelector()
 {
-    document.getElementsByClassName(name_ratingSelector)[0].style.display = 'initial';
+    document.getElementsByClassName(name_ratingSelector)[0].style.display = 'inline-block';
 }
 
 function hideRatingSelector()
@@ -98,7 +98,7 @@ function hideRatingSelector()
 
 function showSearchBar()
 {
-    document.getElementsByClassName(name_searchBar)[0].style.display = 'initial';
+    document.getElementsByClassName(name_searchBar)[0].style.display = 'inline-block';
     document.getElementsByClassName(name_searchBar)[0].placeholder = ' Search parks';
 }
 
