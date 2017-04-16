@@ -17,7 +17,7 @@
             </div>
 
             <div id="searchBox">
-                <form action="none" method="get" onsubmit="return searchSubmit(this)">
+                <form action="resultPage.html" method="get" onsubmit="return searchSubmit(this)">
                     <select id="typeSelectorHeader" class="typeSelector_name" name="typeSelector" onchange="typeSelectorChanged()">
                         <option value="name">Name</option>
                         <option value="suburb">Suburb</option>
@@ -45,7 +45,7 @@
                         <option value="suburb9">Suburb 9</option>
                     </select>
                     <input type="text" id="searchBarHeader" class="searchBar_name" name="value" placeholder="Search parks">
-                    <input type="submit" id="submitButtonHeader" formaction="resultPage.html" value="Search">
+                    <input type="submit" id="submitButtonHeader" value="Search">
                 </form>
             </div>
 
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="commentCell">
-                    <span class="commentTitle">Lsaac Newton</span>
+                    <span class="commentTitle">Isaac Newton</span>
                     <div class="commentRating">
                         <img src="imgs/filledStar.svg" alt="stars">
                         <img src="imgs/filledStar.svg" alt="stars">
@@ -127,7 +127,7 @@
             </div>
 
             <div id="commentBox">
-                <form action="none" method="post">
+                <form action="itemPage.html" method="post">
                     <textarea id="commentArea" name="comment" placeholder="Leave a comment"></textarea>
                     <div class="commentRating">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 1)">

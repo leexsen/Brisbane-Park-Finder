@@ -14,7 +14,7 @@
                 <span id="text_finder">Finder</span>
             </div>
             <div id="searchBox">
-                <form action="none" method="get" onsubmit="return searchSubmit(this)">
+                <form action="resultPage.html" method="get" onsubmit="return searchSubmit(this)">
                     <select id="typeSelectorHeader" class="typeSelector_name" name="typeSelector" onchange="typeSelectorChanged()">
                         <option value="name">Name</option>
                         <option value="suburb">Suburb</option>
@@ -40,7 +40,7 @@
                         <option value="suburb9">Suburb 9</option>
                     </select>
                     <input type="text" id="searchBarHeader" class="searchBar_name" name="value" placeholder="Search parks">
-                    <input type="submit" id="submitButtonHeader" formaction="resultPage.html" value="Search">
+                    <input type="submit" id="submitButtonHeader" value="Search">
                 </form>
             </div>
             <div id="navigationBar">
@@ -52,13 +52,15 @@
             </div>
         </div>
         <div id="whiteBox">
-            <span id="titleText">Login</span><br>
-            <form action="none" method="get" onsubmit="return loginSubmit(this)">
-                <input type="email" id="loginFormTop" name="emailForm" placeholder="Email" onkeypress="clearError()" required>
-                <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError()" required><br>
+            <span id="titleText">Login</span><br><br>
+            <span id="incorrectLogin" class="errorText">Incorrect login. Please try again.</span><br>
+            <form action="searchPage.html" method="get" onsubmit="return loginSubmit(this)">
+                <input type="text" id="loginFormTop" name="emailForm" placeholder="Email" onkeypress="clearError('noEmail')"><br>
+                <span id="noEmail" class="errorText">Please enter a valid email address.</span><br>
+                <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError('noPassword')"><br>
+                <span id="noPassword" class="errorText">Please enter in a password.</span><br>
                 <input type="submit" id="loginButton" value="Login">
                 <span id="loginOrRegisterText"> or <a href="register.html">Register</a></span>
-                <br><span id="badLogin"></span>
             </form>
         </div>
         <div id="footer">

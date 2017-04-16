@@ -14,7 +14,7 @@
                 <span id="text_finder">Finder</span>
             </div>
             <div id="searchBox">
-                <form action="none" method="get" onsubmit="return searchSubmit(this)">
+                <form action="resultPage.html" method="get" onsubmit="return searchSubmit(this)">
                     <select id="typeSelectorHeader" class="typeSelector_name" name="typeSelector" onchange="typeSelectorChanged()">
                         <option value="name">Name</option>
                         <option value="suburb">Suburb</option>
@@ -40,7 +40,7 @@
                         <option value="suburb9">Suburb 9</option>
                     </select>
                     <input type="text" id="searchBarHeader" class="searchBar_name" name="value" placeholder="Search parks">
-                    <input type="submit" id="submitButtonHeader" formaction="resultPage.html" value="Search">
+                    <input type="submit" id="submitButtonHeader" value="Search">
                 </form>
             </div>
             <div id="navigationBar">
@@ -52,16 +52,23 @@
             </div>
         </div>
         <div id="whiteBox">
-            <span id="titleText">Register</span><br>
-            <form action="none" method="get" onsubmit="return registerSubmit(this)">
-                <input type="text" class="loginFormHalf" name="firstName" placeholder="First Name" required>
-                <input type="text" class="loginFormHalf" name="lastName" placeholder="Last Name" required>
-                <input type="email" class="loginForm" name="emailForm" placeholder="Email" required>
-                <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError()" required><br>
-                <input type="password" class="loginForm" name="confirmForm" placeholder="Confirm Password" onkeypress="clearError()" required><br>
+            <span id="titleText">Register</span><br><br>
+            <span id="incorrectLogin" class="errorText">This email is already in use. Please use another email.</span><br>
+            <form action="searchPage.html" method="get" onsubmit="return registerSubmit(this)">
+                <input type="text" class="loginFormHalf" name="firstName" placeholder="First Name" onkeypress="clearError('noName')">
+                <input type="text" class="loginFormHalf" name="lastName" placeholder="Last Name" onkeypress="clearError('noName')"><br>
+                <span id="noName" class="errorText">Please enter in a name.</span><br>
+                <input type="text" class="loginForm" name="emailForm" placeholder="Email" onkeypress="clearError('noEmail')"><br>
+                <span id="noEmail" class="errorText">Please enter a valid email address.</span><br>
+                <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError('noPassword')"><br>
+                <span id="noPassword" class="errorText">Please enter in a password.</span><br>
+                <input type="password" class="loginForm" name="confirmForm" placeholder="Confirm Password" onkeypress="clearError('noConfirm')"><br>
+                <span id="noConfirm" class="errorText">Please confirm your password.</span><br>
+                <input type="checkbox" id="robotCheck" name="robotCheck" onchange="clearError('badRobot')">
+                <label id="robotLabel" for="robotCheck"> I am not a robot</label><br>
+                <span id="badRobot" class="errorText">Please ensure you are not a robot.</span><br>
                 <input type="submit" id="loginButton" value="Register">
                 <span id="loginOrRegisterText"> or <a href="login.html">Login</a></span>
-                <br><span id="badLogin"></span>
             </form>
         </div>
         <div id="footer">

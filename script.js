@@ -114,7 +114,7 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
-        searchBar.innerHTML = " Geolocation is not supported by your browser.";
+        searchBar.innerHTML = "Geolocation is not supported by your browser.";
     }
 }
 
@@ -129,16 +129,16 @@ function showError(error) {
     var msg = "";
     switch(error.code) {
         case error.PERMISSION_DENIED:
-            msg = " Denied the request for Geolocation."
+            msg = "Denied the request for Geolocation."
             break;
         case error.POSITION_UNAVAILABLE:
-            msg = " Location information is unavailable."
+            msg = "Location information is unavailable."
             break;
         case error.TIMEOUT:
-            msg = " The request to get your location timed out."
+            msg = "The request to get your location timed out."
             break;
         case error.UNKNOWN_ERROR:
-            msg = " An unknown error occurred."
+            msg = "An unknown error occurred."
             break;
     }
     searchBar.value = "";
@@ -208,38 +208,122 @@ function searchSubmit(form)
     return true;
 }
 
-// Checks if the user's form data matches with the server's data and logs them in if so.
-function loginSubmit() {
-    var id_badLogin = document.getElementById("badLogin");
+// Validates the login form.
+function loginSubmit(form) {
+    var email = checkEmail(form);
+    var password = checkPassword(form);
+    var data = checkData(form, email, password);
+    
+    return (email && password && data);
+}
+
+// Validates the register form.
+function registerSubmit(form) {
+    var name = checkName(form);
+    var email = checkEmail(form);
+    var password = checkPassword(form);
+    var confirm = checkConfirm(form);
+    var robot = checkRobot(form);
+    var usage = checkUsage(form);
+    
+    return (name && email && password && confirm && usage);
+}
+
+// Checks if the name fields are empty and returns false if so
+function checkName(form) {
+    if (form.firstName.value == "" || form.lastName.value == "") {
+        document.getElementById("noName").style.display = 'inline-block';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Checks if the email field is empty or invalid and returns false if so.
+function checkEmail(form) {
+    // Credit to W3C for the pattern matching code
+    var x = form.emailForm.value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    
+    if (form.emailForm.value == "" || atpos < 1 || dotpos < atpos + 2 || dotpos + 2 > x.length) {
+        document.getElementById("noEmail").style.display = 'inline-block';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Checks if the password field is empty and returns false if so
+function checkPassword(form) {
+    if (form.passwordForm.value == "") {
+        document.getElementById("noPassword").style.display = 'inline-block';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Checks if the confirm password field is empty or if the password fields do not match and returns false if so
+function checkConfirm(form) {
+    if (form.confirmForm.value == "") {
+        document.getElementById("noConfirm").style.display = 'inline-block';
+        return false;
+    } else if (form.passwordForm.value != form.confirmForm.value) {
+        document.getElementById("noConfirm").innerHTML = "Please ensure the password fields match.";
+        document.getElementById("noConfirm").style.display = 'inline-block';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Checks if the checkbox is checked and returns true if so
+function checkRobot(form) {
+    if (form.robotCheck.checked == false) {
+        document.getElementById("badRobot").style.display = 'inline-block';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Checks if the login details are in the server and returns true if so, otherwise returns false.
+function checkData(form, email, password) {
     
     // The following is just a hackish way to test both success and failure of the form.
     // This code will change once server side validation is active.
-    var chanceOfSuccess = Math.floor(Math.random() * 2);
+    var success = window.confirm("Do you want to test a successful validation?");
     
-    if (chanceOfSuccess == 0) {
-        id_badLogin.innerHTML = "Incorrect login. Please try again.";
-        id_badLogin.style.display = 'initial';
+    if (success == false && email == true && password == true) {
+        document.getElementById("incorrectLogin").style.display = 'inline-block';
         return false;
     } else {
         return true;
     }
 }
 
-// Adds the user's form data to the server's data and logs them in.
-function registerSubmit(form) {
-    var id_badLogin = document.getElementById("badLogin");
+// Checks if the email given is already in the database, and returns false if so.
+function checkUsage(form, email, password) {
     
-    if (form.passwordForm.value != form.confirmForm.value) {
-        id_badLogin.innerHTML = "Ensure the password fields match.";
-        id_badLogin.style.display = 'initial';
+    // The following code ensures that the conditional strucutre is in place.
+    // This code will change once server side validation is active.
+    
+    if (1 > 2) {
+        document.getElementById("incorrectLogin").style.display = 'inline-block';
         return false;
     } else {
         return true;
     }
 }
+
 
 // Clears the error message
-function clearError() {
-    document.getElementById("badLogin").style.display = 'none';
+function clearError(id) {
+    if (document.getElementById("incorrectLogin") != null) {
+        document.getElementById("incorrectLogin").style.display = 'none';
+    }
+    
+    document.getElementById(id).style.display = 'none';
     
 }
