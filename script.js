@@ -223,10 +223,10 @@ function registerSubmit(form) {
     var email = checkEmail(form);
     var password = checkPassword(form);
     var confirm = checkConfirm(form);
-    var robot = checkRobot(form);
+    var date = checkDate(form);
     var usage = checkUsage(form);
     
-    return (name && email && password && confirm && usage);
+    return (name && email && date && password && confirm && usage);
 }
 
 // Checks if the name fields are empty and returns false if so
@@ -241,12 +241,8 @@ function checkName(form) {
 
 // Checks if the email field is empty or invalid and returns false if so.
 function checkEmail(form) {
-    // Credit to W3C for the pattern matching code
-    var x = form.emailForm.value;
-    var atpos = x.indexOf("@");
-    var dotpos = x.lastIndexOf(".");
-    
-    if (form.emailForm.value == "" || atpos < 1 || dotpos < atpos + 2 || dotpos + 2 > x.length) {
+    var emailPattern =/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailPattern.test(form.emailForm.value)) {
         document.getElementById("noEmail").style.display = 'inline-block';
         return false;
     } else {
@@ -279,9 +275,10 @@ function checkConfirm(form) {
 }
 
 // Checks if the checkbox is checked and returns true if so
-function checkRobot(form) {
-    if (form.robotCheck.checked == false) {
-        document.getElementById("badRobot").style.display = 'inline-block';
+function checkDate(form) {
+    var datePattern =/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/;
+    if(!datePattern.test(form.dateForm.value)) {
+        document.getElementById("noDate").style.display = 'inline-block';
         return false;
     } else {
         return true;

@@ -57,16 +57,15 @@
             <form action="index.html" method="get" onsubmit="return registerSubmit(this)">
                 <input type="text" class="loginFormHalf" name="firstName" placeholder="First Name" onkeypress="clearError('noName')">
                 <input type="text" class="loginFormHalf" name="lastName" placeholder="Last Name" onkeypress="clearError('noName')"><br>
-                <span id="noName" class="errorText">Please enter in a name.</span><br>
+                <span id="noName" class="errorText">Please enter a name.</span><br>
                 <input type="text" class="loginForm" name="emailForm" placeholder="Email" onkeypress="clearError('noEmail')"><br>
                 <span id="noEmail" class="errorText">Please enter a valid email address.</span><br>
+                <input type="date" class="loginForm" name="dateForm" placeholder="Birthday (yyyy-mm-dd)" onchange="clearError('noDate')"><br>
+                <span id="noDate" class="errorText">Please provide your birth date.</span><br>
                 <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError('noPassword')"><br>
-                <span id="noPassword" class="errorText">Please enter in a password.</span><br>
+                <span id="noPassword" class="errorText">Please enter a password.</span><br>
                 <input type="password" class="loginForm" name="confirmForm" placeholder="Confirm Password" onkeypress="clearError('noConfirm')"><br>
                 <span id="noConfirm" class="errorText">Please confirm your password.</span><br>
-                <input type="checkbox" id="robotCheck" name="robotCheck" onchange="clearError('badRobot')">
-                <label id="robotLabel" for="robotCheck"> I am not a robot</label><br>
-                <span id="badRobot" class="errorText">Please ensure you are not a robot.</span><br>
                 <input type="submit" id="loginButton" value="Register">
                 <span id="loginOrRegisterText"> or <a href="login.html">Login</a></span>
             </form>

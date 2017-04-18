@@ -508,7 +508,7 @@ body, html {
 #loginButton {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 3%;
+    margin-top: 2%;
     height: 45px;
     width: 20%;
     min-width: 70px;
@@ -534,14 +534,6 @@ body, html {
     font-size: 110%;
     color: red;
     display: none;
-}
-
-#robotCheck {
-    margin-top: 3%;
-}
-
-#robotLabel {
-    font-size: 130%;
 }
 
 #footer {
