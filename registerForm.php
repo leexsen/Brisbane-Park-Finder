@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Login - Brisbane Park Finder</title>
+        <title>Register - Brisbane Park Finder</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="script.js"></script>
     </head>
@@ -52,15 +52,47 @@
             </div>
         </div>
         <div id="whiteBox">
-            <span id="titleText">Login</span><br><br>
-            <span id="incorrectLogin" class="errorText">Incorrect login. Please try again.</span><br>
-            <form action="index.html" method="get" onsubmit="return loginSubmit(this)">
-                <input type="text" id="loginFormTop" name="emailForm" placeholder="Email" onkeypress="clearError('noEmail')"><br>
+            <span id="titleText">Register</span><br><br>
+            <span id="incorrectLogin" class="errorText">This email is already in use. Please use another email.</span><br>
+            <form method="post" action="register.php">
+                <input type="text" class="loginFormHalf" name="fNameForm" placeholder="First Name" onkeypress="clearError('noName')" value="<?php
+                    if(isset($_POST['fNameForm'])) {
+                        echo htmlspecialchars($_POST['fNameForm']);
+                    }
+                    ?>"/>
+                <input type="text" class="loginFormHalf" name="lNameForm" placeholder="Last Name" onkeypress="clearError('noName')" value="<?php
+                    if(isset($_POST['lNameForm'])) {
+                        echo htmlspecialchars($_POST['lNameForm']);
+                    }
+                    ?>"/><br>
+                <span id="noName" class="errorText">Please enter a name.</span><br>
+                <input type="text" class="loginForm" name="emailForm" placeholder="Email" onkeypress="clearError('noEmail')" value="<?php
+                    if(isset($_POST['emailForm'])) {
+                        echo htmlspecialchars($_POST['emailForm']);
+                    }
+                    ?>"/><br>
                 <span id="noEmail" class="errorText">Please enter a valid email address.</span><br>
-                <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError('noPassword')"><br>
-                <span id="noPassword" class="errorText">Please enter in a password.</span><br>
-                <input type="submit" id="loginButton" value="Login">
-                <span id="loginOrRegisterText"> or <a href="register.html">Register</a></span>
+                <input type="date" class="loginForm" name="dateForm" placeholder="Birthday (yyyy-mm-dd)" onchange="clearError('noDate')" value="<?php
+                    if(isset($_POST['dateForm'])) {
+                        echo htmlspecialchars($_POST['dateForm']);
+                    }
+                    ?>"/><br>
+                <span id="noDate" class="errorText">Please provide your birth date.</span><br>
+                <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError('noPassword')" value="<?php
+                    if(isset($_POST['passwordForm'])) {
+                        echo htmlspecialchars($_POST['passwordForm']);
+                    }
+                    ?>"/><br>
+                <span id="noPassword" class="errorText">Please enter a password.</span><br>
+                <input type="password" class="loginForm" name="confirmForm" placeholder="Confirm Password" onkeypress="clearError('noConfirm')" value="<?php
+                    if(isset($_POST['confirmForm'])) {
+                        echo htmlspecialchars($_POST['confirmForm']);
+                    }
+                    ?>"/><br>
+                <span id="noConfirm" class="errorText">Please confirm your password.</span>
+                <span id="badConfirm" class="errorText">Please ensure the password fields match.</span><br>
+                <input type="submit" id="loginButton" value="Register">
+                <span id="loginOrRegisterText"> or <a href="login.php">Login</a></span>
             </form>
         </div>
         <div id="footer">

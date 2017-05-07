@@ -378,6 +378,7 @@ body, html {
 	font-size: 140%;
 	color: #66666d;
 	margin-right: 10px;
+    overflow: hidden;
 }
 
 .commentRating {
@@ -445,7 +446,7 @@ body, html {
     margin-top: 2%;
     margin-bottom: 2%;
     padding-top: 75px;
-    height: 600px;
+    height: 625px;
     max-width: 600px;
     background-color: #FFFFFF;
     border-radius: 5px;

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Register - Brisbane Park Finder</title>
+        <title>Login - Brisbane Park Finder</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="script.js"></script>
     </head>
@@ -52,22 +52,23 @@
             </div>
         </div>
         <div id="whiteBox">
-            <span id="titleText">Register</span><br><br>
-            <span id="incorrectLogin" class="errorText">This email is already in use. Please use another email.</span><br>
-            <form action="index.html" method="get" onsubmit="return registerSubmit(this)">
-                <input type="text" class="loginFormHalf" name="firstName" placeholder="First Name" onkeypress="clearError('noName')">
-                <input type="text" class="loginFormHalf" name="lastName" placeholder="Last Name" onkeypress="clearError('noName')"><br>
-                <span id="noName" class="errorText">Please enter a name.</span><br>
-                <input type="text" class="loginForm" name="emailForm" placeholder="Email" onkeypress="clearError('noEmail')"><br>
+            <span id="titleText">Login</span><br><br>
+            <span id="incorrectLogin" class="errorText">Incorrect login. Please try again.</span><br>
+            <form method="post" action="login.php">
+                <input type="text" id="loginFormTop" name="emailForm" placeholder="Email" onkeypress="clearError('noEmail')" value="<?php
+                        if(isset($_POST['emailForm'])) {
+                            echo htmlspecialchars($_POST['emailForm']);
+                        }
+                    ?>"/><br>
                 <span id="noEmail" class="errorText">Please enter a valid email address.</span><br>
-                <input type="date" class="loginForm" name="dateForm" placeholder="Birthday (yyyy-mm-dd)" onchange="clearError('noDate')"><br>
-                <span id="noDate" class="errorText">Please provide your birth date.</span><br>
-                <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError('noPassword')"><br>
-                <span id="noPassword" class="errorText">Please enter a password.</span><br>
-                <input type="password" class="loginForm" name="confirmForm" placeholder="Confirm Password" onkeypress="clearError('noConfirm')"><br>
-                <span id="noConfirm" class="errorText">Please confirm your password.</span><br>
-                <input type="submit" id="loginButton" value="Register">
-                <span id="loginOrRegisterText"> or <a href="login.html">Login</a></span>
+                <input type="password" class="loginForm" name="passwordForm" placeholder="Password" onkeypress="clearError('noPassword')" value="<?php
+                        if(isset($_POST['passwordForm'])) {
+                            echo htmlspecialchars($_POST['passwordForm']);
+                        }
+                    ?>"/><br>
+                <span id="noPassword" class="errorText">Please enter in a password.</span><br>
+                <input type="submit" id="loginButton" value="Login">
+                <span id="loginOrRegisterText"> or <a href="register.php">Register</a></span>
             </form>
         </div>
         <div id="footer">
