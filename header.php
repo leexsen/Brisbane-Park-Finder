@@ -23,7 +23,7 @@
                 <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 5)">
             </div>
             <select id="suburbSelectorHeader" class="suburbSelector_name">
-				<?php showSuburbOptions($db); ?>
+				<?php showSuburbOptions(); ?>
             </select>
             <input type="text" id="searchBarHeader" class="searchBar_name" name="value" placeholder="Search parks">
             <input type="submit" id="submitButtonHeader" value="Search">
@@ -36,9 +36,9 @@
 
     <div id="navigationBar">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="resultPage.html">All Parks</a></li>
-            <li><a href="itemPage.html">Random Park</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="resultPage.php">All Parks</a></li>
+            <li><a href="itemPage.php?pid=2">Random Park</a></li>
         </ul>
     </div>
 </div>

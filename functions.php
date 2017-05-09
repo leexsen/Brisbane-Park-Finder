@@ -9,8 +9,9 @@
 		$db = null;
 	}
 
-	function showSuburbOptions($db)
+	function showSuburbOptions()
 	{
+		$db = connectDB();
 		$sql = 'select distinct suburb from parks';
 
 		$results = $db->query($sql);	
@@ -18,6 +19,7 @@
 			echo "<option value=\"${row['suburb']}\">${row['suburb']}</option>";
 		}
 
+		disconnectDB($db);
 	}
 
 	function showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude)
@@ -45,7 +47,7 @@
 		echo '</a>';
 	}
 
-	function searchParks($db, $type, $value)
+	function searchParks($type, $value)
 	{
 		if ($type == 'name') {
 			$sql = "select * from parks where name like '%$value%'";
@@ -56,21 +58,17 @@
 		} else if ($type == 'location') {
 		
 		} else if ($type == 'rating') {
-			$sql = "select * from parks where pid in (select pid from reviews where rating>=$value)";
-			$results = $db->query($sql);
-
-			if ($results->rowCount() <= 0) {
-				$sql = "select * from parks where pid in (
-							select pid from (
-								select pid, sum(rating)/count(pid) as avgRating from reviews group by pid
-							) as t where avgRating>=$value
-						)";
-			}
+			$sql = "select * from parks where pid in (
+						select pid from (
+							select pid, sum(rating)/count(pid) as avgRating from reviews group by pid
+						) as t where avgRating>=$value
+					)";
 
 		} else {
 			$sql = "select * from parks";
 		}
 
+		$db = connectDB();
 		$results = $db->query($sql);	
 
 		echo '<div id="contentList">';
@@ -88,6 +86,7 @@
 		}
 
 		echo '</div>';
+		disconnectDB($db);
 	}
 
 	function calculateAverageRating($db, $pid)
