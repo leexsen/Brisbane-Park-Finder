@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<?php require_once 'functions.php'; ?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -26,7 +28,7 @@
         </div>
         <div id="whiteBox">
             <span id="titleText">Search By</span><br>
-            <form action="resultPage.html" method="get" onsubmit="return searchSubmit(this)">
+            <form action="resultPage.php" method="get" onsubmit="return searchSubmit(this)">
                 <select id="typeSelector" class="typeSelector_name" name="typeSelector" onchange="typeSelectorChanged()">
                     <option value="name">Name</option>
                     <option value="suburb">Suburb</option>
@@ -42,15 +44,11 @@
                     <img src="imgs/unfilledStar.svg" alt="star" onclick="ratingStarClicked(this, 5)">
                 </div>
                 <select id="suburbSelector" class="suburbSelector_name">
-                    <option value="suburb1">Suburb 1</option>
-                    <option value="suburb2">Suburb 2</option>
-                    <option value="suburb3">Suburb 3</option>
-                    <option value="suburb4">Suburb 4</option>
-                    <option value="suburb5">Suburb 5</option>
-                    <option value="suburb6">Suburb 6</option>
-                    <option value="suburb7">Suburb 7</option>
-                    <option value="suburb8">Suburb 8</option>
-                    <option value="suburb9">Suburb 9</option>
+				<?php
+					$db = connectDB();
+					showSuburbOptions($db);
+					disconnectDB($db);
+				?>
                 </select>
                 <input type="text" id="searchBar" class="searchBar_name" name="value" placeholder="Search parks">
                 <input type="submit" id="submitButton" value="Search">

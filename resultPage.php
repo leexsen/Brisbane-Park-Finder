@@ -9,57 +9,22 @@
     </head>
 
     <body>
-        <div id="header">
-            <div id="logo">
-                <span id="text_brisbane">Brisbane</span>
-                <span id="text_park">Park</span>
-                <span id="text_finder">Finder</span>
-            </div>
+        <?php
+			require_once 'functions.php';
+			$db = connectDB();
+			require 'header.php';
 
-            <div id="searchBox">
-                <form action="resultPage.html" method="get" onsubmit="return searchSubmit(this)">
-                    <select id="typeSelectorHeader" class="typeSelector_name" name="typeSelector" onchange="typeSelectorChanged()">
-                        <option value="name">Name</option>
-                        <option value="suburb">Suburb</option>
-                        <option value="rating">Rating</option>
-                        <option value="location">Location</option>
-                    </select>
-                    <div id="ratingSelectorHeader" class="ratingSelector_name">
-                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 1)">
-                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 2)">
-                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 3)">
-                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 4)">
-                        <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 5)">
-                    </div>
-                    <select id="suburbSelectorHeader" class="suburbSelector_name">
-                        <option value="suburb1">Suburb 1</option>
-                        <option value="suburb2">Suburb 2</option>
-                        <option value="suburb3">Suburb 3</option>
-                        <option value="suburb4">Suburb 4</option>
-                        <option value="suburb5">Suburb 5</option>
-                        <option value="suburb6">Suburb 6</option>
-                        <option value="suburb7">Suburb 7</option>
-                        <option value="suburb8">Suburb 8</option>
-                        <option value="suburb9">Suburb 9</option>
-                    </select>
-                    <input type="text" id="searchBarHeader" class="searchBar_name" name="value" placeholder="Search parks">
-                    <input type="submit" id="submitButtonHeader" value="Search">
-                </form>
-            </div>
+			if (isset($_GET['typeSelector']) && isset($_GET['value'])) {
+				$type = $_GET['typeSelector'];
+				$value = urldecode($_GET['value']);
 
-            <div id="loginLink">
-                <a href="login.php">Login</a>	
-            </div>
+			} else {
+				
+			}
 
-            <div id="navigationBar">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="resultPage.html">All Parks</a></li>
-                    <li><a href="itemPage.html">Random Park</a></li>
-                </ul>
-            </div>
-        </div>
-
+			searchParks($db, $type, $value);
+		?>
+<!--
         <div id="contentList">
             <a href="itemPage.html">
                 <div class="contentCell">
@@ -162,6 +127,7 @@
                 </div>
             </a>
         </div>
+		-->
 
         <div id="mapWrapper">
             <div id="map"></div>

@@ -33,7 +33,7 @@ function showMapMarkers()
 		});
 		
 		marker.addListener('click', function() {
-			window.location.href = 'itemPage.html';
+			window.location.href = 'itemPage.html?pid=' + position[2];
 		});
 
 		markers[i] = marker;
@@ -199,6 +199,8 @@ function searchSubmit(form)
     } else if (type == 'rating') {
         searchBar.value = ratingSelector.value; 
     }
+
+    //searchBar.value = encodeURI(searchBar.value);
     
     // remove these elements from form so that the data from them
     // won't be sent
