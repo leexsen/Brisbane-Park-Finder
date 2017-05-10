@@ -83,7 +83,7 @@
 			$suburb = $row['suburb'];
 			$latitude = $row['latitude'];
 			$longitude = $row['longitude'];
-			$rating = calculateAverageRating($db, $pid);
+			$rating = round(calculateAverageRating($db, $pid));
 
 			if ($type != 'pid') {
 				echo "<a href=\"itemPage.php?pid=$pid\">";
