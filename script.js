@@ -33,7 +33,7 @@ function showMapMarkers()
 		});
 		
 		marker.addListener('click', function() {
-			window.location.href = 'itemPage.html?pid=' + position[2];
+			window.location.href = 'itemPage.php?pid=' + position[2];
 		});
 
 		markers[i] = marker;
@@ -200,12 +200,30 @@ function searchSubmit(form)
         searchBar.value = ratingSelector.value; 
     }
 
-    //searchBar.value = encodeURI(searchBar.value);
-    
     // remove these elements from form so that the data from them
     // won't be sent
     form.removeChild(ratingSelector);
     form.removeChild(suburbSelector);
+    
+    return true;
+}
+
+/* simplify the interface between client side and server side
+ * by reconstructing the data to [typeSelector=value?searchBar=value]
+ * It will replace the value of searchBar depends on users' selection.
+ *
+ * form: the form need to be simplified.
+ */
+function commentSubmit(form)
+{
+    var ratingValue = document.getElementById('commentBoxRating');
+    var rating = document.getElementsByClassName('rating')[0];
+    
+	rating.value = ratingValue.value; 
+
+    // remove these elements from form so that the data from them
+    // won't be sent
+    form.removeChild(ratingValue);
     
     return true;
 }

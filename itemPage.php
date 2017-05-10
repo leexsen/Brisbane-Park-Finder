@@ -9,82 +9,43 @@
     </head>
 
     <body>
-		<?php require_once 'header.php' ?>;
+		<?php
+			require_once 'header.php';
+
+			if (isset($_GET['pid'])) {
+				$pid= $_GET['pid'];
+			} else {
+				$pid= $_POST['pid'];
+			}
+
+			if (isset($_POST['comment'])) {
+				$uid = 1; // this line is just for testing.
+				$comment = $_POST['comment'];
+				$rating = $_POST['rating'];
+				$date = date('Y-d-m');
+
+				uploadComment($uid, $pid, $comment, $rating, $date);
+			}
+		?>
         
         <div id="detailedInfo">
-            <div class="contentCell">
-                <span class="contentTitle">7TH BRIGADE PARK</span>
-                <div class="contentRating">
-                    <img src="imgs/filledStar.svg" alt="stars">
-                    <img src="imgs/filledStar.svg" alt="stars">
-                    <img src="imgs/filledStar.svg" alt="stars">
-                </div>
-                <span class="contentDescription">HAMILTON RD, CHERMSIDE</span>
-                <data value="-27.38006149,153.0387005"></data>
-            </div>
-
-            <div id="commentList">
-                <div class="commentCell">
-                    <span class="commentTitle">Leonhard Euler</span>
-                    <div class="commentRating">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                    </div>
-                    <span class="comment">This is a beautiful park, I love it</span>
-                </div>
-
-                <div class="commentCell">
-                    <span class="commentTitle">Isaac Newton</span>
-                    <div class="commentRating">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                    </div>
-                    <span class="comment">This is where I got hit by an apple</span>
-                </div>
-
-                <div class="commentCell">
-                    <span class="commentTitle">Alan Turing</span>
-                    <div class="commentRating">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                    </div>
-                    <span class="comment">It's good generally but it's a little bit small</span>
-                </div>
-
-                <div class="commentCell">
-                    <span class="commentTitle">John von Neumann</span>
-                    <div class="commentRating">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                    </div>
-                    <span class="comment">It's nice and quiet</span>
-                </div>
-
-                <div class="commentCell">
-                    <span class="commentTitle">Ada Lovelace</span>
-                    <div class="commentRating">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                        <img src="imgs/filledStar.svg" alt="stars">
-                    </div>
-                    <span class="comment">Not too bad</span>
-                </div>
-            </div>
+			<?php
+				searchParks('pid', $pid);
+				searchComments($pid);
+			?>
 
             <div id="commentBox">
-                <form action="itemPage.html" method="post">
+                <form action="itemPage.php" method="post" onsubmit="return commentSubmit(this)">
                     <textarea id="commentArea" name="comment" placeholder="Leave a comment"></textarea>
-                    <div class="commentRating">
+                    <div class="commentRating" id="commentBoxRating">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 1)">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 2)">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 3)">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 4)">
                         <img src="imgs/unfilledStar.svg" alt="stars" onclick="ratingStarClicked(this, 5)">
                     </div>
+					<input type="hidden" name="rating" class="rating">
+					<?php echo "<input type=\"hidden\" name=\"pid\" value=\"$pid\">"; ?>
                     <input type="submit" id="commentSubmitButton" value="Submit">
                 </form>
             </div>

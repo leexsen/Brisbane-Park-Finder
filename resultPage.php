@@ -20,8 +20,10 @@
 				$type = "";
 				$value = "";
 			}
-
-			searchParks($type, $value);
+			
+			echo '<div id="contentList">';
+				searchParks($type, $value);
+			echo '</div>';
 		?>
 
         <div id="mapWrapper">

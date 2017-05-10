@@ -29,8 +29,8 @@ create table reviews
 		uid INT not null,
 		pid INT not null,
 		comment TEXT not null,
-		rating INT not null,
-		date DATE not null
+		date DATE not null,
+		rating INT not null
 );
 
 alter table reviews add foreign key(uid) references members(uid) on delete cascade on update cascade;
