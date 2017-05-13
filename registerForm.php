@@ -12,7 +12,7 @@
         <div id="whiteBox">
             <span id="titleText">Register</span><br><br>
             <span id="incorrectLogin" class="errorText">This email is already in use. Please use another email.</span><br>
-            <form method="post" action="register.php">
+            <form method="post" action="register.php" onsubmit="return registerSubmit(this);">
                 <input type="text" class="loginFormHalf" name="fNameForm" placeholder="First Name" onkeypress="clearError('noName')" value="<?php
                     if(isset($_POST['fNameForm'])) {
                         echo htmlspecialchars($_POST['fNameForm']);

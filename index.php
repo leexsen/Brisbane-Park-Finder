@@ -20,9 +20,9 @@
             </div>
             <div id="navigationBar">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="resultPage.html">All Parks</a></li>
-                    <li><a href="itemPage.html">Random Park</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="resultPage.php">All Parks</a></li>
+                    <li><a href="itemPage.php">Random Park</a></li>
                 </ul>
             </div>
         </div>

@@ -12,7 +12,7 @@
         <div id="whiteBox">
             <span id="titleText">Login</span><br><br>
             <span id="incorrectLogin" class="errorText">Incorrect login. Please try again.</span><br>
-            <form method="post" action="login.php">
+            <form method="post" action="login.php" onsubmit="return loginSubmit(this);">
                 <input type="text" id="loginFormTop" name="emailForm" placeholder="Email" onkeypress="clearError('noEmail')" value="<?php
                         if(isset($_POST['emailForm'])) {
                             echo htmlspecialchars($_POST['emailForm']);
