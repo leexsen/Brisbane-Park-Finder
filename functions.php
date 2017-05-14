@@ -23,8 +23,8 @@
 		$sql = 'select distinct suburb from parks';
 
 		$results = $db->query($sql);	
-		while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
-			echo "<option value=\"${row['suburb']}\">${row['suburb']}</option>";
+		foreach ($results as $row) {
+			echo "<option value=\"{$row['suburb']}\">{$row['suburb']}</option>";
 		}
 
 		disconnectDB($db);
@@ -52,31 +52,35 @@
 	function searchParks($type, $value)
 	{
 		if ($type == 'name') {
-			$sql = "select * from parks where name like '%$value%'";
+			$sql = 'select * from parks where name like :value';
 
 		} else if ($type == 'suburb') {
-			$sql = "select * from parks where suburb='$value'";
+			$sql = 'select * from parks where suburb = :value';
 
 		} else if ($type == 'location') {
 		
 		} else if ($type == 'rating') {
-			$sql = "select * from parks where pid in (
+			$sql = 'select * from parks where pid in (
 						select pid from (
 							select pid, sum(rating)/count(pid) as avgRating from reviews group by pid
-						) as t where avgRating>=$value
-					)";
+						) as t where avgRating >= :value
+					)';
 
 		} else if ($type == 'pid') {
-			$sql = "select * from parks where pid=$value";
+			$sql = 'select * from parks where pid = :value';
 
 		} else {
-			$sql = "select * from parks";
+			$sql = 'select * from parks';
 		}
 
 		$db = connectDB();
-		$results = $db->query($sql);	
+		$stmt = $db->prepare($sql);	
+		$stmt->bindValue(':value', $value);
+		$stmt->execute();
 
-		while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
+		$results = $stmt->fetchAll();
+
+		foreach ($results as $row) {
 			$pid = $row['pid'];
 			$name = $row['name'];
 			$street = $row['street'];
@@ -99,8 +103,12 @@
 
 	function calculateAverageRating($db, $pid)
 	{
-		$sql = "select sum(rating)/count(rating) from reviews where pid=$pid";
-		$averageRating = $db->query($sql)->fetchColumn();	
+		$sql = 'select sum(rating)/count(rating) from reviews where pid = :pid';
+		$stmt = $db->prepare($sql);
+		$stmt->bindValue(':pid', $pid);
+		$stmt->execute();
+
+		$averageRating = $stmt->fetchColumn();	
 		
 		return $averageRating;
 	}
@@ -120,14 +128,21 @@
 
 	function searchComments($pid)
 	{
-		$sql = "select first_name, last_name, rating, date, comment from reviews, members where reviews.uid=members.uid and pid=$pid";
+		$sql = 'select first_name, last_name, rating, date, comment
+				from reviews, members
+				where reviews.uid = members.uid and pid = :pid';
+
 		$db = connectDB();
-		$results = $db->query($sql);	
+		$stmt = $db->prepare($sql);
+		$stmt->bindValue(':pid', $pid);
+		$stmt->execute();
+
+		$results = $stmt->fetchAll();	
 
 		echo '<div id="commentList">';
 
-		while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
-			$name = "${row['first_name']} ${row['last_name']}";
+		foreach ($results as $row) {
+			$name = "{$row['first_name']} {$row['last_name']}";
 			$rating = $row['rating'];
 			$date = $row['date'];
 			$comment = $row['comment'];
@@ -142,9 +157,19 @@
 
 	function uploadComment($uid, $pid, $comment, $rating, $date)
 	{
-		$sql = "insert into reviews values(null,$uid,$pid,'$comment','$date',$rating)";	
+		$sql = 'insert into reviews
+				values(null, :uid, :pid, :comment, :date, :rating)';
+
 		$db = connectDB();
-		$db->exec($sql);
+		$stmt = $db->prepare($sql);
+
+		$stmt->bindValue(':uid', $uid);
+		$stmt->bindValue(':pid', $pid);
+		$stmt->bindValue(':comment', $comment);
+		$stmt->bindValue(':date', $date);
+		$stmt->bindValue(':rating', $rating);
+
+		$stmt->execute();
 		disconnectDB($db);
 	}
 ?>

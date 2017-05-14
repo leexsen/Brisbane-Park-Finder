@@ -33,8 +33,9 @@ function showMapMarkers()
                                             });
         
         marker.addListener('click', function() {
-                           window.location.href = 'itemPage.php?pid=' + position[2];
-                           });
+								var pid = position[2];
+								return function() {window.location.href = 'itemPage.php?pid=' + pid;};
+                           }());
         
         markers[i] = marker;
     }

@@ -4,8 +4,6 @@
         <meta charset="utf-8">
         <title>NAME OF ITEM - Brisbane Park Finder</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="script.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiQBcLHFTpkoWsFJgGwtDWQ52GH-KFS-w&callback=initMap"></script>
     </head>
 
     <body>
@@ -22,7 +20,7 @@
 				$uid = 1; // this line is just for testing.
 				$comment = $_POST['comment'];
 				$rating = $_POST['rating'];
-				$date = date('Y-d-m');
+				$date = date('Y-m-d');
 
 				uploadComment($uid, $pid, $comment, $rating, $date);
 			}
@@ -59,4 +57,7 @@
             <span id="footerText">Made by Sean Li and Daniel Paten</span>
         </div>
     </body>
+<script src="script.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiQBcLHFTpkoWsFJgGwtDWQ52GH-KFS-w&callback=initMap"></script>
+
 </html>
