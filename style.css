@@ -322,6 +322,19 @@ body, html {
 	margin-right: 10px;
 }
 
+#noResults {
+    text-align: center;
+}
+
+.noResultsText {
+    padding-top: 25px;
+    font-size: 140%;
+    font-weight: bold;
+    color: #999c9c;
+    text-align: center;
+}
+
+
 .contentRating {
 	display: inline-block;
 	color: #999c9c;

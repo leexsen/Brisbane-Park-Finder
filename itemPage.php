@@ -2,19 +2,21 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>NAME OF ITEM - Brisbane Park Finder</title>
+        <?php
+            require_once 'header.php';
+            
+            if (isset($_GET['pid'])) {
+                $pid= $_GET['pid'];
+            } else {
+                $pid= $_POST['pid'];
+            }
+            
+            getParkName($pid) ?>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
 		<?php
-			require_once 'header.php';
-
-			if (isset($_GET['pid'])) {
-				$pid= $_GET['pid'];
-			} else {
-				$pid= $_POST['pid'];
-			}
 
 			if (isset($_POST['comment'])) {
 				$uid = 1; // this line is just for testing.

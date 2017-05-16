@@ -20,7 +20,7 @@
 	function showSuburbOptions()
 	{
 		$db = connectDB();
-		$sql = 'select distinct suburb from parks';
+		$sql = 'select distinct suburb from parks order by suburb';
 
 		$results = $db->query($sql);	
 		foreach ($results as $row) {
@@ -32,8 +32,8 @@
 
 	function showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude)
 	{
-		echo '<div class="contentCell">';
-			echo "<span class=\"contentTitle\">$name</span>";
+		echo '<div class="contentCell" itemscope itemtype="http://schema.org/Place">';
+			echo "<span class=\"contentTitle\" itemprop=\"name\">$name</span>";
 			
 			echo '<div class="contentRating">';
 				if ($rating > 0) {
@@ -44,8 +44,8 @@
 				}
 			echo '</div>';
 
-			echo "<span class=\"contentDescription\">$street, $suburb</span>";
-			echo "<data value=\"$latitude,$longitude,$pid\"></data>";
+			echo "<span class=\"contentDescription\" itemprop=\"address\">$street, $suburb</span>";
+			echo "<data value=\"$latitude,$longitude,$pid\" itemprop=\"geo\"></data>";
 		echo '</div>';
 	}
 
@@ -79,27 +79,49 @@
 		$stmt->execute();
 
 		$results = $stmt->fetchAll();
-
-		foreach ($results as $row) {
-			$pid = $row['pid'];
-			$name = $row['name'];
-			$street = $row['street'];
-			$suburb = $row['suburb'];
-			$latitude = $row['latitude'];
-			$longitude = $row['longitude'];
-			$rating = round(calculateAverageRating($db, $pid));
-
-			if ($type != 'pid') {
-				echo "<a href=\"itemPage.php?pid=$pid\">";
-				showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude);
-				echo '</a>';
-			} else {
-				showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude);
-			}
-		}
+        
+        if (count($results) > 0) {
+            
+            foreach ($results as $row) {
+                $pid = $row['pid'];
+                $name = $row['name'];
+                $street = $row['street'];
+                $suburb = $row['suburb'];
+                $latitude = $row['latitude'];
+                $longitude = $row['longitude'];
+                $rating = round(calculateAverageRating($db, $pid));
+                
+                if ($type != 'pid') {
+                    echo "<a href=\"itemPage.php?pid=$pid\">";
+                    showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude);
+                    echo '</a>';
+                } else {
+                    showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude);
+                }
+            }
+        } else {
+            echo "<div id=\"noResults\"><br><span class=\"noResultsText\">No results found.</span></div>";
+        }
 
 		disconnectDB($db);
 	}
+    
+    function getParkName($value) {
+        $sql = 'select * from parks where pid = :value';
+        $db = connectDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':value', $value);
+        $stmt->execute();
+        
+        $results = $stmt->fetchAll();
+        
+        foreach ($results as $row) {
+            $name = $row['name'];
+            echo "<title>$name - Brisbane Park Finder</title>";
+        }
+
+        disconnectDB($db);
+    }
 
 	function calculateAverageRating($db, $pid)
 	{
@@ -115,14 +137,14 @@
 	
 	function showComments($name, $rating, $comment, $date)
 	{
-		echo '<div class="commentCell">';
-			echo "<span class=\"commentTitle\">$name</span>";
+		echo '<div class="commentCell" itemscope itemtype="http://schema.org/Review">';
+			echo "<span class=\"commentTitle\" itemprop=\"author\">$name</span>";
 
-			echo '<div class="commentRating">';
+			echo '<div class="commentRating" itemprop="reviewRating">';
 				showStars('imgs/filledStar.svg', $rating);
 			echo '</div>';
 			
-			echo "<span class=\"comment\">$comment</span>";
+			echo "<span class=\"comment\" itemprop=\"reviewBody\">$comment</span>";
 		echo '</div>';
 	}
 
