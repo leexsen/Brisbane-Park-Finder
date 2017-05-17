@@ -12,7 +12,7 @@
             // redisplay the form
             include 'registerForm.php';
         } else {
-            echo '<script type="text/javascript">window.location.href = \'index.html\';</script>';
+            echo '<script type="text/javascript">window.location.href = \'index.php\';</script>';
         }
     } else {
         include 'registerForm.php';

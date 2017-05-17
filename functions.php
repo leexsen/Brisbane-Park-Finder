@@ -53,6 +53,7 @@
 	{
 		if ($type == 'name') {
 			$sql = 'select * from parks where name like :value';
+			$value = "%$value%";
 
 		} else if ($type == 'suburb') {
 			$sql = 'select * from parks where suburb = :value';
