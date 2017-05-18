@@ -10,7 +10,7 @@
         <?php
 			require_once 'header.php';
 
-			if (isset($_GET['typeSelector']) && isset($_GET['value'])) {
+			if (isset($_GET['submit'])) {
 				$type = $_GET['typeSelector'];
 				$value = urldecode($_GET['value']);
 

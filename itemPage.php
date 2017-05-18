@@ -7,9 +7,11 @@
             
             if (isset($_GET['pid'])) {
                 $pid= $_GET['pid'];
-            } else {
+            } else if (isset($_POST['pid'])) {
                 $pid= $_POST['pid'];
-            }
+            } else {
+				$pid = rand(1, 2214);
+			}
             
             getParkName($pid) ?>
         <link rel="stylesheet" type="text/css" href="style.css">

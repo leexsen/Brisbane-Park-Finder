@@ -26,7 +26,7 @@
 				<?php showSuburbOptions(); ?>
             </select>
             <input type="text" id="searchBarHeader" class="searchBar_name" name="value" placeholder="Search parks">
-            <input type="submit" id="submitButtonHeader" value="Search">
+            <input type="submit" id="submitButtonHeader" name="submit" value="Search">
         </form>
     </div>
 
@@ -38,7 +38,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="resultPage.php">All Parks</a></li>
-            <li><a href="itemPage.php?pid=2">Random Park</a></li>
+        	<li><a href="itemPage.php?pid=<?php echo rand(1,2214); ?>">Random Park</a></li>
         </ul>
     </div>
 </div>

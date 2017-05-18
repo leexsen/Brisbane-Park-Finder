@@ -22,7 +22,7 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="resultPage.php">All Parks</a></li>
-                    <li><a href="itemPage.php">Random Park</a></li>
+                    <li><a href="itemPage.php?pid=<?php echo rand(1,2214); ?>">Random Park</a></li>
                 </ul>
             </div>
         </div>
@@ -51,7 +51,7 @@
 				?>
                 </select>
                 <input type="text" id="searchBar" class="searchBar_name" name="value" placeholder="Search parks">
-                <input type="submit" id="submitButton" value="Search">
+                <input type="submit" id="submitButton" name="submit" value="Search">
             </form>
         </div>
         <div id="footer">

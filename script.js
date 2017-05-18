@@ -178,28 +178,28 @@ function resetRatingStars(parent)
         parent.children[i].src = unfilledStar;
     }
     
-    parent.value = 0;
+    parent.value = null;
 }
 
-/* simplify the interface between client side and server side
- * by reconstructing the data to [typeSelector=value?searchBar=value]
- * It will replace the value of searchBar depends on users' selection.
- *
- * form: the form need to be simplified.
- */
+/* Performing a validation and cleaning unecessary field before submitting */
 function searchSubmit(form)
 {
     var ratingSelector = document.getElementsByClassName(name_ratingSelector)[0];
     var suburbSelector = document.getElementsByClassName(name_suburbSelector)[0];
     var searchBar = document.getElementsByClassName(name_searchBar)[0];
     var type = document.getElementsByClassName(name_typeSelector)[0].value;
-    
+
     if (type == 'suburb') {
         searchBar.value = suburbSelector.value;
         
     } else if (type == 'rating') {
         searchBar.value = ratingSelector.value;
     }
+
+	if (searchBar.value == null || searchBar.value == "") {
+		alert('Input is invalid');
+		return false;
+	}
     
     // remove these elements from form so that the data from them
     // won't be sent
@@ -209,16 +209,17 @@ function searchSubmit(form)
     return true;
 }
 
-/* simplify the interface between client side and server side
- * by reconstructing the data to [typeSelector=value?searchBar=value]
- * It will replace the value of searchBar depends on users' selection.
- *
- * form: the form need to be simplified.
- */
+/* Performing a validation and cleaning unecessary field before submitting */
 function commentSubmit(form)
 {
     var ratingValue = document.getElementById('commentBoxRating');
     var rating = document.getElementsByClassName('rating')[0];
+	var comment = document.getElementById('commentArea');
+
+	if (ratingValue.value == null || comment.value == "") {
+		alert('Rating or comment cannot be empty');
+		return false;
+	}
     
     rating.value = ratingValue.value;
     
