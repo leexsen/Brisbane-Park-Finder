@@ -396,11 +396,20 @@ body, html {
 
 .commentRating {
 	display: inline-block;
+	margin-right: 10px;
 }
 
 .commentRating img {
 	width: 18px;
 	height: 18px;
+}
+
+.commentDate {
+	display: inline-block;
+}
+
+.commentDate span {
+	color: #999c9c;
 }
 
 .comment{

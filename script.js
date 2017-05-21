@@ -121,7 +121,7 @@ function getLocation() {
 
 function showPosition(position) {
     var searchBar = document.getElementsByClassName(name_searchBar)[0];
-    searchBar.value = position.coords.latitude + ", " + position.coords.longitude;
+    searchBar.value = position.coords.latitude + "," + position.coords.longitude;
 }
 
 
