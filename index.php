@@ -1,6 +1,5 @@
-<!DOCTYPE html>
 <?php require_once 'functions.php'; ?>
-
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -16,7 +15,13 @@
                 <span id="text_finder">Finder</span>
             </div>
             <div id="loginLink">
-                <a href="login.php">Login</a>
+                <?php
+                    if (isset($_SESSION['isLoggedIn'])) {
+                        echo '<a href="logout.php">Log Out</a>';
+                    } else {
+                        echo '<a href="login.php">Log In</a>';
+                    }
+                    ?>
             </div>
             <div id="navigationBar">
                 <ul>

@@ -1,4 +1,5 @@
 <?php
+    require_once 'functions.php';
     // Checks if the name fields are empty and returns false if so
     function checkName($form, $fname, $lname) {
         if (empty($form[$fname]) || empty($form[$lname])) {
@@ -55,22 +56,60 @@
         }
     }
     
-    // NEED TO CHANGE ONCE SQL IS DONE
     // Checks if the login details are in the server and returns true if so, otherwise returns false
     function checkLogin($form, $email, $password) {
-        if (!$email && !$password) {
+        
+        $sql = 'select email, password from users';
+        
+        $db = connectDB();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        
+        $results = $stmt->fetchAll();
+        
+        $correctLogin = false;
+        
+        foreach ($results as $row) {
+
+            if ($form[$email] == $row['email'] && $form[$password] == $row['password']) {
+                $correctLogin = true;
+                break;
+            }
+        }
+        
+        if (!$correctLogin) {
             echo '<style type="text/css"> #incorrectLogin {display: inline-block;} </style>';
+            disconnectDB($db);
             return false;
         } else {
+            disconnectDB($db);
             return true;
         }
     }
     
-    // NEED TO CHANGE ONCE SQL IS DONE
     // Checks if the email provided is already in the database, and returns false if so
     function checkRegister($form, $email) {
-        if (!$email) {
+        
+        $sql = 'select email from users';
+        
+        $db = connectDB();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        
+        $results = $stmt->fetchAll();
+        
+        $emailTaken = false;
+        
+        foreach ($results as $row) {
+            if ($form[$email] == $row['email']) {
+                $emailTaken = true;
+                break;
+            }
+        }
+        
+        if ($emailTaken) {
             echo '<style type="text/css"> #incorrectLogin {display: inline-block;} </style>';
+            disconnectDB($db);
             return false;
         } else {
             return true;

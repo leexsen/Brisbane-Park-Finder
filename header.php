@@ -1,5 +1,3 @@
-<?php require_once 'functions.php'; ?>
-
 <div id="header">
 	<div id="logo">
     	<span id="text_brisbane">Brisbane</span>
@@ -31,7 +29,13 @@
     </div>
 
     <div id="loginLink">
-    	<a href="login.php">Login</a>	
+        <?php
+            if (isset($_SESSION['isLoggedIn'])) {
+                echo '<a href="logout.php">Log Out</a>';
+            } else {
+                echo '<a href="login.php">Log In</a>';
+            }
+            ?>
 	</div>
 
     <div id="navigationBar">

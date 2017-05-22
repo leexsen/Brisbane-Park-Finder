@@ -1,17 +1,26 @@
 <?php
-    if (isset($_POST['emailForm']) || isset($_POST['passwordForm'])) {
-        require_once 'formValidation.php';
-        $email = checkEmail($_POST, 'emailForm');
-        $password = checkPassword($_POST, 'passwordForm');
-        $data = checkLogin($_POST, 'emailForm', 'passwordForm');
-
-        if (!$email || !$password || !$data) {
-            // redisplay the form
-            include 'loginForm.php';
+    session_start();
+    if (!isset($_SESSION['isLoggedIn'])) {
+        if (isset($_POST['emailForm']) || isset($_POST['passwordForm'])) {
+            require_once 'formValidation.php';
+            $email = checkEmail($_POST, 'emailForm');
+            $password = checkPassword($_POST, 'passwordForm');
+            $data = checkLogin($_POST, 'emailForm', 'passwordForm');
+            $db = connectDB();
+            if (!$email || !$password || !$data) {
+                // redisplay the form
+                include 'loginForm.php';
+            } else {
+                session_start();
+                $_SESSION['isLoggedIn'] = true;
+                header('Location: index.php');
+                exit();
+            }
         } else {
-            echo '<script type="text/javascript">window.location.href = \'index.php\';</script>';
+            include 'loginForm.php';
         }
     } else {
-        include 'loginForm.php';
+        header('Location: index.php');
+        exit();
     }
     ?>

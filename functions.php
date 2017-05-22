@@ -1,4 +1,7 @@
 <?php
+    
+    session_start();
+    
 	function connectDB()
 	{
 		return new PDO('mysql:host=localhost;dbname=parkfinder', 'root', '123456');
@@ -20,7 +23,7 @@
 	function showSuburbOptions()
 	{
 		$db = connectDB();
-		$sql = 'select distinct suburb from parks order by suburb';
+		$sql = 'select distinct suburb from items order by suburb';
 
 		$results = $db->query($sql);	
 		foreach ($results as $row) {
@@ -32,8 +35,14 @@
 
 	function showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude)
 	{
-		echo '<div class="contentCell" itemscope itemtype="http://schema.org/Place">';
-			echo "<span class=\"contentTitle\" itemprop=\"name\">$name</span>";
+        if (basename($_SERVER['PHP_SELF']) == 'resultPage.php') {
+            echo '<div class="contentCell" itemscope itemtype="http://schema.org/Place">';
+            echo "<span class=\"contentTitle\" itemprop=\"name\">$name</span>";
+        } else {
+            echo '<div class="contentCell">';
+            echo "<span class=\"contentTitle\" itemprop=\"itemReviewed\">$name</span>";
+        }
+        
 			
 			echo '<div class="contentRating">';
 				if ($rating > 0) {
@@ -44,50 +53,55 @@
 				}
 			echo '</div>';
 
-			echo "<span class=\"contentDescription\" itemprop=\"address\">$street, $suburb</span>";
-			echo "<data value=\"$latitude,$longitude,$pid\" itemprop=\"geo\"></data>";
+        if (basename($_SERVER['PHP_SELF']) == 'resultPage.php') {
+            echo "<span class=\"contentDescription\" itemprop=\"address\">$street, $suburb</span>";
+        } else {
+            echo "<span class=\"contentDescription\">$street, $suburb</span>";
+        }
+        
+			echo "<data value=\"$latitude,$longitude,$pid\"></data>";
 		echo '</div>';
 	}
 
-	function searchParks($type, $value)
-	{
-		if ($type == 'name') {
-			$sql = 'select * from parks where name like :value';
-			$value = "%$value%";
-
-		} else if ($type == 'suburb') {
-			$sql = 'select * from parks where suburb = :value';
-
-		} else if ($type == 'location') {
-			$position = explode(',', $value); 
-			$lat = $position[0];
-			$lon = $position[1];
-			$range = 10; // KM
-
-			$pidList = searchByLocation($lat, $lon, $range);
-			$pidList = implode(',', $pidList);
-			$sql = "select * from parks where pid in ($pidList)";
-		
-		} else if ($type == 'rating') {
-			$sql = 'select * from parks where pid in (
-						select pid from (
-							select pid, sum(rating)/count(pid) as avgRating from reviews group by pid
-						) as t where avgRating >= :value
-					)';
-
-		} else if ($type == 'pid') {
-			$sql = 'select * from parks where pid = :value';
-
-		} else {
-			$sql = 'select * from parks';
-		}
-
-		$db = connectDB();
-		$stmt = $db->prepare($sql);	
-		$stmt->bindValue(':value', $value);
-		$stmt->execute();
-
-		$results = $stmt->fetchAll();
+    function searchParks($type, $value)
+    {
+        if ($type == 'name') {
+            $sql = 'select * from items where name like :value';
+            $value = "%$value%";
+            
+        } else if ($type == 'suburb') {
+            $sql = 'select * from items where suburb = :value';
+            
+        } else if ($type == 'location') {
+            $position = explode(',', $value);
+            $lat = $position[0];
+            $lon = $position[1];
+            $range = 10; // KM
+            
+            $pidList = searchByLocation($lat, $lon, $range);
+            $pidList = implode(',', $pidList);
+            $sql = "select * from items where pid in ($pidList)";
+            
+        } else if ($type == 'rating') {
+            $sql = 'select * from items where pid in (
+            select pid from (
+                             select pid, sum(rating)/count(pid) as avgRating from reviews group by pid
+                             ) as t where avgRating >= :value
+            )';
+            
+        } else if ($type == 'pid') {
+            $sql = 'select * from items where pid = :value';
+            
+        } else {
+            $sql = 'select * from items';
+        }
+        
+        $db = connectDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':value', $value);
+        $stmt->execute();
+        
+        $results = $stmt->fetchAll();
         
         if (count($results) > 0) {
             
@@ -111,21 +125,20 @@
         } else {
             echo "<div id=\"noResults\"><br><span class=\"noResultsText\">No results found.</span></div>";
         }
-
-		disconnectDB($db);
-	}
+        
+        disconnectDB($db);
+    }
     
-    function getParkName($value)
-	{
-        $sql = 'select name from parks where pid = :value';
+    function getParkName($value) {
+        $sql = 'select name from items where pid = :value';
         $db = connectDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':value', $value);
         $stmt->execute();
         
         $name = $stmt->fetchColumn();
-		echo "<title>$name - Brisbane Park Finder</title>";
-
+        echo "<title>$name - Brisbane Park Finder</title>";
+        
         disconnectDB($db);
     }
 
@@ -141,70 +154,88 @@
 		return $averageRating;
 	}
 	
-	function showComments($name, $rating, $comment, $date)
-	{
-		echo '<div class="commentCell" itemscope itemtype="http://schema.org/Review">';
-			echo "<span class=\"commentTitle\" itemprop=\"author\">$name</span>";
+    
+    function showComments($name, $rating, $comment, $date)
+    {
+        echo '<div class="commentCell">';
+        echo "<span class=\"commentTitle\" itemprop=\"author\">$name</span>";
+        
+        echo '<div class="commentRating" itemprop="reviewRating">';
+        showStars('imgs/filledStar.svg', $rating);
+        echo '</div>';
+        
+        echo '<div class="commentDate">';
+        echo "<span>$date</span>";
+        echo '</div>';
+        
+        echo "<span class=\"comment\" itemprop=\"reviewBody\">$comment</span>";
+        echo '</div>';
+    }
+    
+    function searchComments($pid)
+    {
+        $sql = 'select first_name, last_name, rating, date, comment
+        from reviews, members
+        where reviews.uid = members.uid and pid = :pid';
+        
+        $db = connectDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':pid', $pid);
+        $stmt->execute();
+        
+        $results = $stmt->fetchAll();
+        
+        echo '<div id="commentList">';
+        
+        foreach ($results as $row) {
+            $name = "{$row['first_name']} {$row['last_name']}";
+            $rating = $row['rating'];
+            $date = $row['date'];
+            $comment = $row['comment'];
+            
+            showComments($name, $rating, $comment, $date);
+        }
+        
+        echo '</div>';
+        disconnectDB($db);
+        
+    }
 
-			echo '<div class="commentRating" itemprop="reviewRating">';
-				showStars('imgs/filledStar.svg', $rating);
-			echo '</div>';
-
-			echo '<div class="commentDate">';
-				echo "<span>$date</span>";
-			echo '</div>';
-			
-			echo "<span class=\"comment\" itemprop=\"reviewBody\">$comment</span>";
-		echo '</div>';
-	}
-
-	function searchComments($pid)
-	{
-		$sql = 'select first_name, last_name, rating, date, comment
-				from reviews, members
-				where reviews.uid = members.uid and pid = :pid';
-
-		$db = connectDB();
-		$stmt = $db->prepare($sql);
-		$stmt->bindValue(':pid', $pid);
-		$stmt->execute();
-
-		$results = $stmt->fetchAll();	
-
-		echo '<div id="commentList">';
-
-		foreach ($results as $row) {
-			$name = "{$row['first_name']} {$row['last_name']}";
-			$rating = $row['rating'];
-			$date = $row['date'];
-			$comment = $row['comment'];
-
-			showComments($name, $rating, $comment, $date);
-		}
-
-		echo '</div>';
-		disconnectDB($db);
-
-	}
-
-	function uploadComment($uid, $pid, $comment, $rating, $date)
-	{
-		$sql = 'insert into reviews
-				values(null, :uid, :pid, :comment, :date, :rating)';
-
-		$db = connectDB();
-		$stmt = $db->prepare($sql);
-
-		$stmt->bindValue(':uid', $uid);
-		$stmt->bindValue(':pid', $pid);
-		$stmt->bindValue(':comment', $comment);
-		$stmt->bindValue(':date', $date);
-		$stmt->bindValue(':rating', $rating);
-
-		$stmt->execute();
-		disconnectDB($db);
-	}
-
+    function uploadComment($uid, $pid, $comment, $rating, $date)
+    {
+        $sql = 'insert into reviews
+        values(null, :uid, :pid, :comment, :date, :rating)';
+        $db = connectDB();
+        $stmt = $db->prepare($sql);
+        
+        $stmt->bindValue(':uid', $uid);
+        $stmt->bindValue(':pid', $pid);
+        $stmt->bindValue(':comment', $comment);
+        $stmt->bindValue(':date', $date);
+        $stmt->bindValue(':rating', $rating);
+        
+        $stmt->execute();
+        disconnectDB($db);
+    }
+    
+    function addUser($fName, $lName, $email, $password, $birthday) {
+        $sql = 'insert into users
+        values(null, :fName, :lName, :email, :password, :birthday)';
+        
+        $db = connectDB();
+        $stmt = $db->prepare($sql);
+        
+        $stmt->bindValue(':fName', $fName);
+        $stmt->bindValue(':lName', $lName);
+        $stmt->bindValue(':email', $email);
+        $stmt->bindValue(':password', $password);
+        $stmt->bindValue(':birthday', $birthday);
+        
+        $stmt->execute();
+        
+        disconnectDB($db);
+    }
+    
 	/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 	/*::                                                                         :*/
 	/*::  This routine calculates the distance between two points (given the     :*/
@@ -236,25 +267,25 @@
 		return ($miles * 1.609344) <= $range;
 	}
 
-	function searchByLocation($lat, $lon, $range)
-	{
-		$sql = 'select * from parks';
-		$desiredPidList = array();
-
-		$db = connectDB();
-		$results = $db->query($sql);
-		
-		foreach ($results as $row) {
+    function searchByLocation($lat, $lon, $range)
+    {
+        $sql = 'select * from items';
+        $desiredPidList = array();
+        
+        $db = connectDB();
+        $results = $db->query($sql);
+        
+        foreach ($results as $row) {
             $pid = $row['pid'];
             $latitude = $row['latitude'];
             $longitude = $row['longitude'];
-
-			if (calculateDistance($lat, $lon, $latitude, $longitude, $range)) {
-				$desiredPidList[] = $pid;		
-			}
-		}
-
-		disconnectDB($db);
-		return $desiredPidList;
-	}
+            
+            if (calculateDistance($lat, $lon, $latitude, $longitude, $range)) {
+                $desiredPidList[] = $pid;
+            }
+        }
+        
+        disconnectDB($db);
+        return $desiredPidList;
+    }
 ?>

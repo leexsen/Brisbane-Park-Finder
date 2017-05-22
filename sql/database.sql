@@ -10,7 +10,7 @@ create table members
 		password varchar(20) not null
 );
 
-create table parks
+create table items
 (
 		pid INT primary key auto_increment,
 		park_code nvarchar(5) not null,
@@ -34,9 +34,9 @@ create table reviews
 );
 
 alter table reviews add foreign key(uid) references members(uid) on delete cascade on update cascade;
-alter table reviews add foreign key(pid) references parks(pid) on delete cascade on update cascade;
+alter table reviews add foreign key(pid) references items(pid) on delete cascade on update cascade;
 
-INSERT INTO parks VALUES
+INSERT INTO items VALUES
  (1,'D0228','7TH BRIGADE PARK','HAMILTON RD','CHERMSIDE','503,826.69','6,971,467.72',-27.38006149,153.0387005)
 ,(2,'D0021','A. J. JONES RECREATION RESERVE','CORNWALL ST','GREENSLOPES','504,302.76','6,957,798.83',-27.50346312,153.0435636)
 ,(3,'D0696','A.R.C.HILL PARK','GOSS RD','VIRGINIA','505,521.79','6,970,985.33',-27.38441077,153.0558459)
