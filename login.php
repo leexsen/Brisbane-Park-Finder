@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once 'functions.php';
     if (!isset($_SESSION['isLoggedIn'])) {
         if (isset($_POST['emailForm']) || isset($_POST['passwordForm'])) {
             require_once 'formValidation.php';

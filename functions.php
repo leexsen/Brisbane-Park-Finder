@@ -219,7 +219,7 @@
     }
     
     function addUser($fName, $lName, $email, $password, $birthday) {
-        $sql = 'insert into users
+        $sql = 'insert into members
         values(null, :fName, :lName, :email, :password, :birthday)';
         
         $db = connectDB();

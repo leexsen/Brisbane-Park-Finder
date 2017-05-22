@@ -59,7 +59,7 @@
     // Checks if the login details are in the server and returns true if so, otherwise returns false
     function checkLogin($form, $email, $password) {
         
-        $sql = 'select email, password from users';
+        $sql = 'select email, password from members';
         
         $db = connectDB();
         $stmt = $db->prepare($sql);
@@ -70,7 +70,6 @@
         $correctLogin = false;
         
         foreach ($results as $row) {
-
             if ($form[$email] == $row['email'] && $form[$password] == $row['password']) {
                 $correctLogin = true;
                 break;
@@ -90,7 +89,7 @@
     // Checks if the email provided is already in the database, and returns false if so
     function checkRegister($form, $email) {
         
-        $sql = 'select email from users';
+        $sql = 'select email from members';
         
         $db = connectDB();
         $stmt = $db->prepare($sql);

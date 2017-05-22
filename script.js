@@ -234,9 +234,8 @@ function commentSubmit(form)
 function loginSubmit(form) {
     var email = checkEmail(form);
     var password = checkPassword(form);
-    var data = checkLogin(form, email, password);
     
-    return (email && password && data);
+    return (email && password);
 }
 
 // Validates the register form.
@@ -246,9 +245,8 @@ function registerSubmit(form) {
     var password = checkPassword(form);
     var confirm = checkConfirm(form);
     var date = checkDate(form);
-    var usage = checkRegister(form);
     
-    return (name && email && date && password && confirm && usage);
+    return (name && email && date && password && confirm);
 }
 
 // Checks if the name fields are empty and returns false if so
@@ -296,39 +294,11 @@ function checkConfirm(form) {
     }
 }
 
-// Checks if the checkbox is checked and returns true if so
+// Checks if the date field is empty or invalid and returns true if so
 function checkDate(form) {
     var datePattern =/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/;
     if(!datePattern.test(form.dateForm.value)) {
         document.getElementById("noDate").style.display = 'inline-block';
-        return false;
-    } else {
-        return true;
-    }
-}
-
-// Checks if the login details are in the server and returns true if so, otherwise returns false.
-function checkLogin(form, email, password) {
-    
-    // The following code ensures that the conditional strucutre is in place.
-    // This code will change once server side validation is active.
-    
-    if (false) {
-        document.getElementById("incorrectLogin").style.display = 'inline-block';
-        return false;
-    } else {
-        return true;
-    }
-}
-
-// Checks if the email given is already in the database, and returns false if so.
-function checkRegister(form, email, password) {
-    
-    // The following code ensures that the conditional strucutre is in place.
-    // This code will change once server side validation is active.
-    
-    if (false) {
-        document.getElementById("incorrectLogin").style.display = 'inline-block';
         return false;
     } else {
         return true;
