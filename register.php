@@ -15,7 +15,6 @@
                 include 'registerForm.php';
             } else {
                 addUser($_POST['fNameForm'], $_POST['lNameForm'], $_POST['emailForm'], $_POST['passwordForm'], $_POST['dateForm']);
-                session_start();
                 $_SESSION['isLoggedIn'] = true;
                 header('Location: index.php');
                 exit();

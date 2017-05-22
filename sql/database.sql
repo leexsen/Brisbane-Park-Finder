@@ -7,7 +7,8 @@ create table members
 		first_name nvarchar(10) not null,
 		last_name nvarchar(10) not null,
 		email nvarchar(10) not null,
-		password varchar(20) not null
+		password varchar(20) not null,
+		birthday date not null
 );
 
 create table items

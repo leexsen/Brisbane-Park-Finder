@@ -11,7 +11,6 @@
                 // redisplay the form
                 include 'loginForm.php';
             } else {
-                session_start();
                 $_SESSION['isLoggedIn'] = true;
                 header('Location: index.php');
                 exit();
