@@ -220,7 +220,7 @@
     
     function addUser($fName, $lName, $email, $password, $birthday) {
         $sql = 'insert into members
-        values(null, :fName, :lName, :email, :password, :birthday)';
+        values(null, :fName, :lName, :email, :birthday, sha2(concat(:password, :salt), 0), :salt)';
         
         $db = connectDB();
         $stmt = $db->prepare($sql);
@@ -228,8 +228,9 @@
         $stmt->bindValue(':fName', $fName);
         $stmt->bindValue(':lName', $lName);
         $stmt->bindValue(':email', $email);
-        $stmt->bindValue(':password', $password);
         $stmt->bindValue(':birthday', $birthday);
+        $stmt->bindValue(':password', $password);
+        $stmt->bindValue(':salt', '4b23123');
         
         $stmt->execute();
         

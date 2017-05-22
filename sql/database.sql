@@ -6,9 +6,10 @@ create table members
 		uid INT primary key auto_increment,
 		first_name nvarchar(10) not null,
 		last_name nvarchar(10) not null,
-		email nvarchar(10) not null,
-		password varchar(20) not null,
-		birthday date not null
+		email nvarchar(128) not null,
+		birthday date not null,
+		password varchar(64) not null,
+		salt varchar(64) not null
 );
 
 create table items
