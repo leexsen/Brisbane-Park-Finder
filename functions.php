@@ -12,6 +12,7 @@
 		$db = null;
 	}
 
+	// This method used to display a numbers of star based on the value of num
 	function showStars($path, $num)
 	{
 		while ($num > 0) {
@@ -20,6 +21,7 @@
 		}	
 	}
 
+	// It shows a combo box of suburbs
 	function showSuburbOptions()
 	{
 		$db = connectDB();
@@ -33,6 +35,7 @@
 		disconnectDB($db);
 	}
 
+	// It generates a list of parks in result page
 	function showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude)
 	{
         if (basename($_SERVER['PHP_SELF']) == 'resultPage.php') {
@@ -43,15 +46,14 @@
             echo "<span class=\"contentTitle\" itemprop=\"itemReviewed\">$name</span>";
         }
         
-			
-			echo '<div class="contentRating">';
-				if ($rating > 0) {
-					showStars('imgs/filledStar.svg', $rating);
+		echo '<div class="contentRating">';
+		if ($rating > 0) {
+			showStars('imgs/filledStar.svg', $rating);
 
-				} else {
-					echo 'No rating';
-				}
-			echo '</div>';
+		} else {
+			echo 'No rating';
+		}
+		echo '</div>';
 
         if (basename($_SERVER['PHP_SELF']) == 'resultPage.php') {
             echo "<span class=\"contentDescription\" itemprop=\"address\">$street, $suburb</span>";
@@ -63,6 +65,7 @@
 		echo '</div>';
 	}
 
+	// The search function based on the name, suburb, location, rating and pid (park's id)
     function searchParks($type, $value)
     {
         if ($type == 'name') {
@@ -79,15 +82,19 @@
             $range = 10; // KM
             
             $pidList = searchByLocation($lat, $lon, $range);
+
+			// convert the array to string seperated by comma
             $pidList = implode(',', $pidList);
-            $sql = "select * from items where pid in ($pidList)";
+			$sql = "select * from items where pid in ($pidList)";
             
         } else if ($type == 'rating') {
+			// calculate the average rating for each park, which is greater or equal to the variable value
+			// and get their pid 
             $sql = 'select * from items where pid in (
-            select pid from (
+            			select pid from (
                              select pid, sum(rating)/count(pid) as avgRating from reviews group by pid
-                             ) as t where avgRating >= :value
-            )';
+                        ) as t where avgRating >= :value
+            		)';
             
         } else if ($type == 'pid') {
             $sql = 'select * from items where pid = :value';
@@ -114,10 +121,12 @@
                 $longitude = $row['longitude'];
                 $rating = floor(calculateAverageRating($db, $pid));
                 
+				// show it in the result page, otherwise, in the item page
                 if ($type != 'pid') {
                     echo "<a href=\"itemPage.php?pid=$pid\">";
                     showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude);
                     echo '</a>';
+
                 } else {
                     showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude);
                 }
@@ -142,6 +151,7 @@
         disconnectDB($db);
     }
 
+	// calcaulate average rating for the park whose pid is the value of the variable pid
 	function calculateAverageRating($db, $pid)
 	{
 		$sql = 'select sum(rating)/count(rating) from reviews where pid = :pid';
@@ -155,6 +165,7 @@
 	}
 	
     
+	// display the structure of comments
     function showComments($name, $rating, $comment, $date)
     {
         echo '<div class="commentCell">';
@@ -172,11 +183,12 @@
         echo '</div>';
     }
     
+	// query comments based on the value of the variable pid
     function searchComments($pid)
     {
         $sql = 'select first_name, last_name, rating, date, comment
-        from reviews, members
-        where reviews.uid = members.uid and pid = :pid';
+        		from reviews, members
+        		where reviews.uid = members.uid and pid = :pid';
         
         $db = connectDB();
         $stmt = $db->prepare($sql);
@@ -187,30 +199,37 @@
         
         echo '<div id="commentList">';
         
-        foreach ($results as $row) {
-            $name = "{$row['first_name']} {$row['last_name']}";
-            $rating = $row['rating'];
-            $date = $row['date'];
-            $comment = $row['comment'];
+        if (count($results) > 0) {
+
+        	foreach ($results as $row) {
+            	$name = "{$row['first_name']} {$row['last_name']}";
+            	$rating = $row['rating'];
+            	$date = $row['date'];
+            	$comment = $row['comment'];
             
-            showComments($name, $rating, $comment, $date);
-        }
+            	showComments($name, $rating, $comment, $date);
+        	}
+		} else {
+            echo "<div id=\"noResults\"><br><span class=\"noResultsText\">No comments found.</span></div>";
+		}
         
         echo '</div>';
         disconnectDB($db);
         
     }
 
+	// insert user's comment into the database
     function uploadComment($uid, $pid, $comment, $rating, $date)
     {
         $sql = 'insert into reviews
-        values(null, :uid, :pid, :comment, :date, :rating)';
+        		values(null, :uid, :pid, :comment, :date, :rating)';
+
         $db = connectDB();
         $stmt = $db->prepare($sql);
         
         $stmt->bindValue(':uid', $uid);
         $stmt->bindValue(':pid', $pid);
-        $stmt->bindValue(':comment', $comment);
+        $stmt->bindValue(':comment', strip_tags($comment));
         $stmt->bindValue(':date', $date);
         $stmt->bindValue(':rating', $rating);
         
@@ -220,7 +239,7 @@
     
     function addUser($fName, $lName, $email, $password, $birthday) {
         $sql = 'insert into members
-        values(null, :fName, :lName, :email, :salt, SHA2(CONCAT(:password, :salt), 0), :birthday)';
+        		values(null, :fName, :lName, :email, :salt, SHA2(CONCAT(:password, :salt), 0), :birthday)';
         
         $salt = uniqid();
         
@@ -285,6 +304,7 @@
 		return ($miles * 1.609344) <= $range;
 	}
 
+	// given a certain range, search parks based on user's location
     function searchByLocation($lat, $lon, $range)
     {
         $sql = 'select * from items';

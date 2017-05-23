@@ -197,7 +197,7 @@ function searchSubmit(form)
     }
 
 	if (searchBar.value == null || searchBar.value == "") {
-		alert('Input is invalid');
+		alert('The value entered is invalid');
 		return false;
 	}
     

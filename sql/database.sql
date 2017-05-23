@@ -6,9 +6,9 @@ create table members
 		uid INT primary key auto_increment,
 		first_name nvarchar(25) not null,
 		last_name nvarchar(25) not null,
-		email nvarchar(128) not null,
-		salt  varchar(25) not null,
-		password varchar(64) not null,
+		email nvarchar(128) unique not null,
+		salt  varchar(25) unique not null,
+		password varchar(64) unique not null,
 		birthday date not null
 );
 
@@ -35,9 +35,11 @@ create table reviews
 		rating INT not null
 );
 
+/* add foreign keys and cascade */
 alter table reviews add foreign key(uid) references members(uid) on delete cascade on update cascade;
 alter table reviews add foreign key(pid) references items(pid) on delete cascade on update cascade;
 
+/* insert parks data into the database */
 INSERT INTO items VALUES
  (1,'D0228','7TH BRIGADE PARK','HAMILTON RD','CHERMSIDE','503,826.69','6,971,467.72',-27.38006149,153.0387005)
 ,(2,'D0021','A. J. JONES RECREATION RESERVE','CORNWALL ST','GREENSLOPES','504,302.76','6,957,798.83',-27.50346312,153.0435636)
@@ -2254,3 +2256,18 @@ INSERT INTO items VALUES
 ,(2213,'D2114','ZILLMERE ROAD (NO. 605) PARK','ZILLMERE RD','ZILLMERE','502,854.35','6,974,309.14',-27.35441116,153.0288603)
 ,(2214,'D2051','ZINGELMANN PLACE PARK','ZINGELMANN PL','KURABY','510,035.74','6,945,893.19',-27.61091533,153.1017066);
 
+/* create five users for testing */
+insert into members values
+(null, 'Leonhard', 'Euler', 'leohard@cc.cc', '4b520', sha2(concat('password', '4b520'), 0), '2017-01-01'),
+(null, 'Isaac', 'Newton', 'isaac@cc.cc', '4b521', sha2(concat('password', '4b521'), 0), '2017-01-01'),
+(null, 'Alan', 'Turing', 'alan@cc.cc', '4b522', sha2(concat('password', '4b522'), 0), '2017-01-01'),
+(null, 'John', 'von Neumann', 'john@cc.cc', '4b523', sha2(concat('password', '4b523'), 0), '2017-01-01'),
+(null, 'Ada', 'Lovelace', 'ada@cc.cc', '4b524', sha2(concat('password', '4b524'), 0), '2017-01-01');
+
+/* insert comments for testing */
+insert into reviews values
+(null, 1, 1, "This is a beautiful park, I love it", '2017-01-01', 4),
+(null, 2, 1, "This is where I got hit by an apple", '2017-01-01', 4),
+(null, 3, 1, "It's good generally but it's a little bit small", '2017-01-01', 3),
+(null, 4, 1, "It's nice and quiet", '2017-01-01', 5),
+(null, 5, 1, "Not too bad", '2017-01-01', 1);

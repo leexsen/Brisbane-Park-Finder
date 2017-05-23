@@ -35,14 +35,14 @@
             } else {
                 echo '<a href="login.php">Log In</a>';
             }
-            ?>
+        ?>
 	</div>
 
     <div id="navigationBar">
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="resultPage.php">All Parks</a></li>
-        	<li><a href="itemPage.php?pid=<?php echo rand(1,2214); ?>">Random Park</a></li>
+        	<li><a href="itemPage.php">Random Park</a></li>
         </ul>
     </div>
 </div>

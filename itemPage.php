@@ -57,9 +57,9 @@
                             <input type='submit' id='commentSubmitButton' value='Submit'>
                         </form>";
                     } else {
-                        echo '<br><span class="noResultsText">You must be logged in to enter a comment.</span>';
+            			echo "<br><br><div id=\"noResults\"><br><span class=\"noResultsText\">You must be logged in to enter a comment.</span></div>";
                     }
-                    ?>
+			?>
             </div>
         </div>
 
@@ -71,6 +71,7 @@
             <span id="footerText">Made by Sean Li and Daniel Paten</span>
         </div>
     </body>
+
 <script src="script.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiQBcLHFTpkoWsFJgGwtDWQ52GH-KFS-w&callback=initMap"></script>
 
