@@ -30,7 +30,7 @@
 
     <div id="loginLink">
         <?php
-            if (isset($_SESSION['isLoggedIn'])) {
+            if (isset($_SESSION['user'])) {
                 echo '<a href="logout.php">Log Out</a>';
             } else {
                 echo '<a href="login.php">Log In</a>';

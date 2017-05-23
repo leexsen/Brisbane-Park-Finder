@@ -24,7 +24,7 @@
 		<?php
 
 			if (isset($_POST['comment'])) {
-                $uid = 1; // need to change
+                $uid = $_SESSION['user'];
                 $pid = $_POST['pid'];
 				$comment = $_POST['comment'];
 				$rating = $_POST['rating'];
@@ -42,7 +42,7 @@
 
             <div id="commentBox">
                 <?php
-                    if (isset($_SESSION['isLoggedIn'])) {
+                    if (isset($_SESSION['user'])) {
                         echo "<form action='itemPage.php' method='post' onsubmit='return commentSubmit(this)'>
                             <textarea id='commentArea' name='comment' placeholder='Leave a comment'></textarea>
                             <div class='commentRating' id='commentBoxRating'>

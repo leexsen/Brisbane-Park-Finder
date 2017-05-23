@@ -220,7 +220,9 @@
     
     function addUser($fName, $lName, $email, $password, $birthday) {
         $sql = 'insert into members
-        values(null, :fName, :lName, :email, :password, :birthday)';
+        values(null, :fName, :lName, :email, :salt, SHA2(CONCAT(:password, :salt), 0), :birthday)';
+        
+        $salt = uniqid();
         
         $db = connectDB();
         $stmt = $db->prepare($sql);
@@ -228,12 +230,28 @@
         $stmt->bindValue(':fName', $fName);
         $stmt->bindValue(':lName', $lName);
         $stmt->bindValue(':email', $email);
+        $stmt->bindValue(':salt', $salt);
         $stmt->bindValue(':password', $password);
         $stmt->bindValue(':birthday', $birthday);
         
         $stmt->execute();
         
+        getUserID($email);
+        
         disconnectDB($db);
+    }
+    
+    function getUserID($email) {
+        $sql = 'select uid from members where email = :email';
+        
+        $db = connectDB();
+        $stmt = $db->prepare($sql);
+        
+        $stmt->bindValue(':email', $email);
+        
+        $stmt->execute();
+        
+        return $stmt->fetchColumn();
     }
     
 	/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
