@@ -6,7 +6,7 @@ create table members
 		uid INT primary key auto_increment,
 		first_name nvarchar(25) not null,
 		last_name nvarchar(25) not null,
-		email nvarchar(64) not null,
+		email nvarchar(128) not null,
 		salt  varchar(25) not null,
 		password varchar(64) not null,
 		birthday date not null
