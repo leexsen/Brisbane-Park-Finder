@@ -1,12 +1,14 @@
 <?php
     
+    // Ensures the session is active on every page, as functions.php is included on all pages
     session_start();
     
+    // Connects to the fastapps database
 	function connectDB()
 	{
 		return new PDO('mysql:host=localhost;dbname=parkfinder', 'root', '123456');
 	}
-
+    
 	function disconnectDB($db)
 	{
 		$db = null;
@@ -21,10 +23,12 @@
 		}	
 	}
 
-	// It shows a combo box of suburbs
+	// Fills the combo box from the suburbs in the database
 	function showSuburbOptions()
 	{
 		$db = connectDB();
+        
+        // 'order by suburb' lists them in alphabetical order
 		$sql = 'select distinct suburb from items order by suburb';
 
 		$results = $db->query($sql);	
@@ -38,6 +42,7 @@
 	// It generates a list of parks in result page
 	function showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude)
 	{
+        // Only add the Place meta/microdata if the user is on the results page
         if (basename($_SERVER['PHP_SELF']) == 'resultPage.php') {
             echo '<div class="contentCell" itemscope itemtype="http://schema.org/Place">';
             echo "<span class=\"contentTitle\" itemprop=\"name\">$name</span>";
@@ -46,6 +51,7 @@
             echo "<span class=\"contentTitle\" itemprop=\"itemReviewed\">$name</span>";
         }
         
+        // Add the rating
 		echo '<div class="contentRating">';
 		if ($rating > 0) {
 			showStars('imgs/filledStar.svg', $rating);
@@ -55,12 +61,12 @@
 		}
 		echo '</div>';
 
+        // Only add the address microdata if the user is on the results page
         if (basename($_SERVER['PHP_SELF']) == 'resultPage.php') {
             echo "<span class=\"contentDescription\" itemprop=\"address\">$street, $suburb</span>";
         } else {
             echo "<span class=\"contentDescription\">$street, $suburb</span>";
         }
-        
 			echo "<data value=\"$latitude,$longitude,$pid\"></data>";
 		echo '</div>';
 	}
@@ -68,14 +74,17 @@
 	// The search function based on the name, suburb, location, rating and pid (park's id)
     function searchParks($type, $value)
     {
+        // Sql query based on searching by name, with fuzzy searching enabled
         if ($type == 'name') {
             $sql = 'select * from items where name like :value';
             $value = "%$value%";
-            
+        
         } else if ($type == 'suburb') {
+            // Sql query based on searching by suburb
             $sql = 'select * from items where suburb = :value';
             
         } else if ($type == 'location') {
+            // Sql query based on searching by location
             $position = explode(',', $value);
             $lat = $position[0];
             $lon = $position[1];
@@ -86,9 +95,11 @@
 			// convert the array to string seperated by comma
             $pidList = implode(',', $pidList);
 			$sql = "select * from items where pid in ($pidList)";
-            
+        
         } else if ($type == 'rating') {
-			// calculate the average rating for each park, which is greater or equal to the variable value
+            // Sql query based on searching by rating
+            
+			// Calculates the average rating for each park, which is greater or equal to the variable value
 			// and get their pid 
             $sql = 'select * from items where pid in (
             			select pid from (
@@ -97,9 +108,11 @@
             		)';
             
         } else if ($type == 'pid') {
+            // Sql query based on searching by the park id
             $sql = 'select * from items where pid = :value';
-            
+        
         } else {
+            // Get all the items for the All Parks Page
             $sql = 'select * from items';
         }
         
@@ -121,7 +134,7 @@
                 $longitude = $row['longitude'];
                 $rating = floor(calculateAverageRating($db, $pid));
                 
-				// show it in the result page, otherwise, in the item page
+				// Show it in the result page, otherwise, in the item page
                 if ($type != 'pid') {
                     echo "<a href=\"itemPage.php?pid=$pid\">";
                     showContent($pid, $name, $rating, $street, $suburb, $latitude, $longitude);
@@ -132,12 +145,14 @@
                 }
             }
         } else {
+            // Show a 'no results found' message if there are no matching results
             echo "<div id=\"noResults\"><br><span class=\"noResultsText\">No results found.</span></div>";
         }
         
         disconnectDB($db);
     }
     
+    // Get the name of the park for the tab title
     function getParkName($value) {
         $sql = 'select name from items where pid = :value';
         $db = connectDB();
@@ -151,7 +166,7 @@
         disconnectDB($db);
     }
 
-	// calcaulate average rating for the park whose pid is the value of the variable pid
+	// Calcaulate average rating for the park whose pid is the value of the variable pid
 	function calculateAverageRating($db, $pid)
 	{
 		$sql = 'select sum(rating)/count(rating) from reviews where pid = :pid';
@@ -165,7 +180,7 @@
 	}
 	
     
-	// display the structure of comments
+	// Display the structure of comments
     function showComments($name, $rating, $comment, $date)
     {
         echo '<div class="commentCell">';
@@ -183,7 +198,7 @@
         echo '</div>';
     }
     
-	// query comments based on the value of the variable pid
+	// Query comments based on the value of the variable pid
     function searchComments($pid)
     {
         $sql = 'select first_name, last_name, rating, date, comment
@@ -218,7 +233,7 @@
         
     }
 
-	// insert user's comment into the database
+	// Add the user's comment into the database
     function uploadComment($uid, $pid, $comment, $rating, $date)
     {
         $sql = 'insert into reviews
@@ -237,10 +252,12 @@
         disconnectDB($db);
     }
     
+    // Adds a new user ot the database
     function addUser($fName, $lName, $email, $password, $birthday) {
         $sql = 'insert into members
         		values(null, :fName, :lName, :email, :salt, SHA2(CONCAT(:password, :salt), 0), :birthday)';
         
+        // Generate a random salt value for the password
         $salt = uniqid();
         
         $db = connectDB();
@@ -255,11 +272,10 @@
         
         $stmt->execute();
         
-        getUserID($email);
-        
         disconnectDB($db);
     }
     
+    // Gets the user who has just registered or logged in so the session value can be set
     function getUserID($email) {
         $sql = 'select uid from members where email = :email';
         
@@ -304,7 +320,7 @@
 		return ($miles * 1.609344) <= $range;
 	}
 
-	// given a certain range, search parks based on user's location
+	// Given a certain range, search parks based on user's location
     function searchByLocation($lat, $lon, $range)
     {
         $sql = 'select * from items';

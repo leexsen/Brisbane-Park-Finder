@@ -7,6 +7,7 @@ name_ratingSelector = 'ratingSelector_name';
 filledStar = 'imgs/filledStar.svg';
 unfilledStar = 'imgs/unfilledStar.svg';
 
+// Initialise the map
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
                               center: {lat: -27.38006149, lng: 153.0387005},
@@ -17,6 +18,7 @@ function initMap() {
     map.center = markers[0].position;
 }
 
+// Display the relevant markers on the map
 function showMapMarkers()
 {
     var markers = [];
@@ -43,9 +45,7 @@ function showMapMarkers()
     return markers;
 }
 
-/* it will hide or show elements of search box
- * in the header deponds on users' option.
- */
+// Hide or show elements of search box in the header depending on the user's option.
 function typeSelectorChanged()
 {
     var type = document.getElementsByClassName(name_typeSelector)[0].value;
@@ -181,7 +181,7 @@ function resetRatingStars(parent)
     parent.value = null;
 }
 
-/* Performing a validation and cleaning unecessary field before submitting */
+// Performing a validation and cleaning unecessary field before submitting
 function searchSubmit(form)
 {
     var ratingSelector = document.getElementsByClassName(name_ratingSelector)[0];
@@ -201,15 +201,14 @@ function searchSubmit(form)
 		return false;
 	}
     
-    // remove these elements from form so that the data from them
-    // won't be sent
+    // remove these elements from form so that the data from them won't be sent
     form.removeChild(ratingSelector);
     form.removeChild(suburbSelector);
     
     return true;
 }
 
-/* Performing a validation and cleaning unecessary field before submitting */
+// Performing a validation and cleaning unecessary field before submitting
 function commentSubmit(form)
 {
     var ratingValue = document.getElementById('commentBoxRating');
@@ -223,14 +222,13 @@ function commentSubmit(form)
     
     rating.value = ratingValue.value;
     
-    // remove these elements from form so that the data from them
-    // won't be sent
+    // remove these elements from form so that the data from them won't be sent
     form.removeChild(ratingValue);
     
     return true;
 }
 
-// Validates the login form.
+// Validates the login form
 function loginSubmit(form) {
     var email = checkEmail(form);
     var password = checkPassword(form);
@@ -238,7 +236,7 @@ function loginSubmit(form) {
     return (email && password);
 }
 
-// Validates the register form.
+// Validates the register form
 function registerSubmit(form) {
     var name = checkName(form);
     var email = checkEmail(form);
@@ -261,6 +259,7 @@ function checkName(form) {
 
 // Checks if the email field is empty or invalid and returns false if so.
 function checkEmail(form) {
+    // Pattern matches the style that is entered into the database
     var emailPattern =/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!emailPattern.test(form.emailForm.value)) {
         document.getElementById("noEmail").style.display = 'inline-block';
@@ -296,6 +295,8 @@ function checkConfirm(form) {
 
 // Checks if the date field is empty or invalid and returns true if so
 function checkDate(form) {
+    // Pattern ensures there is at least one character surrounding the '@' and '.'
+    // e.g. 'g@g.c' is acceptable
     var datePattern =/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/;
     if(!datePattern.test(form.dateForm.value)) {
         document.getElementById("noDate").style.display = 'inline-block';

@@ -14,6 +14,8 @@
     
     // Checks if the email field is empty or invalid and returns false if so
     function checkEmail($email) {
+        // Pattern ensures there is at least one character surrounding the '@' and '.'
+        // e.g. 'g@g.c' is acceptable
         $emailPattern = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
         if (empty($email) || !preg_match($emailPattern, $email)) {
             echo '<style type="text/css"> #noEmail {display: inline-block;} </style>';
@@ -48,6 +50,7 @@
     
     // Checks if the date field is empty or invalid and returns false if so
     function checkDay($date) {
+        // Pattern matches the style that is entered into the database
         $datePattern = '/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/';
         if (empty($date) || !preg_match($datePattern, $date)) {
             echo '<style type="text/css"> #noDate {display: inline-block;} </style>';

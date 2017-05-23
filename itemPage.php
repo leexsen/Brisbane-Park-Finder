@@ -6,8 +6,10 @@
         <?php
             require_once 'header.php';
             
+            // Prevents a PHP warning about the ambiguity of the date() function
             date_default_timezone_set("Australia/Brisbane");
             
+            // Loads the park based on the submitted park id, or a random one if the random page is selected
             if (isset($_GET['pid'])) {
                 $pid = $_GET['pid'];
             } else if (isset($_POST['pid'])) {
@@ -22,7 +24,7 @@
 
     <body>
 		<?php
-
+            // Uploads a comment if the page was accessd from a comment submission
 			if (isset($_POST['comment'])) {
                 $uid = $_SESSION['user'];
                 $pid = $_POST['pid'];
@@ -36,12 +38,14 @@
         
         <div id="detailedInfo" itemscope itemtype="http://schema.org/Review">
 			<?php
+                // Loads the required parks and comments
 				searchParks('pid', $pid);
 				searchComments($pid);
 			?>
 
             <div id="commentBox">
                 <?php
+                    // Prevents the comment submission field form appearing when the user isn't logged in
                     if (isset($_SESSION['user'])) {
                         echo "<form action='itemPage.php' method='post' onsubmit='return commentSubmit(this)'>
                             <textarea id='commentArea' name='comment' placeholder='Leave a comment'></textarea>
