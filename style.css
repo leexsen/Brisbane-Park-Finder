@@ -1,3 +1,4 @@
+/* Global page and font elements */
 body, html {
 	background-color: #f3f3f3;
 	margin: 0;
@@ -7,6 +8,7 @@ body, html {
 	font-family: "Microsoft Yahei", Tahoma, Helvetica, Arial, sans-serif;
 }
 
+/* Header on all pages */
 #header {
 	position: relative;
 	height: 120px;
@@ -14,6 +16,7 @@ body, html {
 	box-shadow: 0px 3px 7px #c0c0c0;
 }
 
+/* Brisbane park finder logo on header */
 #logo {
 	position: absolute;
 	top: calc((50% - 37px) / 2);
@@ -23,18 +26,22 @@ body, html {
 	left: 0;
 }
 
+/* Brisbane text on header  */
 #text_brisbane{
 	color: #3c78da;
 }
 
+/* Park text on header */
 #text_park {
 	color: #6aa84f;
 }
 
+/* Finder text on header */
 #text_finder {
 	color: #ff9900;
 }
 
+/* Box containing search elements in header */
 #searchBox {
 	position: relative;
 	top: 10%;
@@ -49,11 +56,13 @@ body, html {
 	transition: box-shadow 0.3s;
 }
 
+/* Create a shadow when mouse is over search box in header */
 #searchBox:hover {
 	box-shadow: 0px 3px 5px #c0c0c0;
 	transition: box-shadow 0.2s;
 }
 
+/* Header version of search bar */
 #searchBarHeader {
 	position: absolute;
 	left: 22%;
@@ -69,6 +78,7 @@ body, html {
 	font-size: 110%;
 }
 
+/* Index page version of search bar */
 #searchBar {
     height: 45px;
     width: 52%;
@@ -85,6 +95,7 @@ body, html {
 	display: inline-block;
 }
 
+/* Header version of type selector */
 #typeSelectorHeader {
     position: absolute;
 	height: 100%;
@@ -100,6 +111,7 @@ body, html {
 	font-size: 110%;
 }
 
+/* Index page version of type selector */
 #typeSelector {
     margin-top: 7%;
     margin-bottom: 10%;
@@ -114,6 +126,7 @@ body, html {
     font-size: 100%;
 }
 
+/* Header version of suburb selector */
 #suburbSelectorHeader {
 	position: absolute;
 	left: 22%;
@@ -128,6 +141,7 @@ body, html {
 	display: none;
 }
 
+/* Index page version of suburb selector */
 #suburbSelector {
     height: 45px;
     min-height: 45px;
@@ -143,7 +157,7 @@ body, html {
 	display: none;
 }
 
-
+/* Header version of rating selector */
 #ratingSelectorHeader {
 	position: absolute;
 	left: 22%;
@@ -158,6 +172,7 @@ body, html {
 	display: none;
 }
 
+/* Index page version of rating selector */
 #ratingSelector {
     height: 25px;
     padding-top: 10px;
@@ -171,11 +186,13 @@ body, html {
 	display: none;
 }
 
+/* Stars for rating selector in header */
 #ratingSelectorHeader img, #ratingSelector img {
 	height: 25px;
 	width: 25px;
 }
 
+/* Search submit button for header */
 #submitButtonHeader {
     position: absolute;
     height: 100%;
@@ -191,6 +208,7 @@ body, html {
 	font-size: 120%;
 }
 
+/* Search submit button for the index page */
 #submitButton {
     position: absolute;
     height: 4%;
@@ -206,6 +224,7 @@ body, html {
     font-size: 120%;
 }
 
+/* Log in text in header */
 #loginLink {
 	position: absolute;
 	top: 15%;
@@ -217,10 +236,12 @@ body, html {
 	font-size: 100%;
 }
 
+/* Log in text if visited */
 #loginLink a:link, a:visited {
 	color: #66666d;
 }
 
+/* Navigation bar in header */
 #navigationBar {
 	position: absolute;
 	width: 100%;
@@ -230,6 +251,7 @@ body, html {
 	border-color:black;
 }
 
+/* Navigation bar list */
 #navigationBar ul {
 	list-style-type: none;
 	margin-left: 2.5%;
@@ -238,6 +260,7 @@ body, html {
 	overflow: hidden;
 }
 
+/* Navigation bar list items */
 #navigationBar ul li {
 	display: inline-block;
 	margin-right: 2%;
@@ -247,14 +270,16 @@ body, html {
 	transition: border-color 0.5s;
 }
 
+/* Navigation bar item links */
 #navigationBar ul li a {
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 100%;
-	color: #999c9c;
+	color: #7c7f7f;
 }
 
+/* Style when mouse is over navigation links */
 #navigationBar ul li:hover {
 	border-color: #3c78da; 
 	border-width: 0 0 3px 0;
@@ -262,6 +287,7 @@ body, html {
 	padding-bottom: 7px;
 }
 
+/* Border for the map view on results and item page */
 #mapWrapper {
 	background: white;
 	width: 53%;
@@ -273,6 +299,7 @@ body, html {
 	box-shadow: 0px 3px 7px #c0c0c0;
 }
 
+/* Google Maps API within map view */
 #map {
     height: 100%;
     width: 100%;
@@ -280,6 +307,7 @@ body, html {
     margin-right: auto;
 }
 
+/* Div containing the search results */
 #contentList {
 	width: 45%;
 	height: calc(98% - 160px);
@@ -290,10 +318,13 @@ body, html {
 	min-width: 433px;
 }
 
+/* Links for the content list */
 #contentList a {
 	text-decoration: none;
 }
 
+/* Rectangular cell where each search result is displayed
+ as well as the park details on the item page */
 .contentCell {
 	margin-bottom: 10px;
 	margin-left: auto;
@@ -310,14 +341,16 @@ body, html {
 	background-color: white;
 }
 
+/* Add a shadow when the mouse is over a result */
 #contentList .contentCell:hover {
 	transition: box-shadow 0.2s;
 	box-shadow: 0px 5px 8px #c0c0c0;
 }
 
+/* Park name in search results and item view */
 .contentTitle {
     display: inline-block;
-    width: 75%;
+    width: 70%;
 	font-size: 140%;
 	font-weight: bold;
 	color: #66666d;
@@ -327,37 +360,44 @@ body, html {
     text-overflow: ellipsis;
 }
 
+/* Div that contains the no results text below */
 #noResults {
     text-align: center;
 }
 
+/* Text that is displayed when there is no search results, no comments,
+ or when the comment submission box can't be shown
+ because the user is not logged in */
 .noResultsText {
     padding-top: 25px;
     font-size: 140%;
     font-weight: bold;
-    color: #999c9c;
+    color: #7c7f7f;
     text-align: center;
 }
 
-
+/* Rating for the park shown in the results and item page */
 .contentRating {
 	display: inline-block;
-	color: #999c9c;
+	color: #6c6e6e;
 }
 
+/* Size of the rating stars */
 .contentRating img {
 	width: 22px;
 	height: 22px;
 }
 
+/* Address shown in the search results and item page */
 .contentDescription {
 	display: block;
 	font-size: 95%;
-	color: #999c9c;
+	color: #6c6e6e;
 	margin-top: 4%;
 	overflow: hidden;
 }
 
+/* Div for the item page that contains the park cell and comments */
 #detailedInfo {
 	width: 45%;
 	height: calc(98% - 170px);
@@ -368,6 +408,7 @@ body, html {
 	right: 0;
 }
 
+/* Container for all the comments in the item page */
 #commentList {
 	background-color: white;
 	margin-left: auto;
@@ -380,6 +421,7 @@ body, html {
 	overflow: auto;
 }
 
+/* Individual comment cell in the item page */
 .commentCell {
 	width: 100%;
 	height: 18%;
@@ -392,6 +434,7 @@ body, html {
 	border-style: solid;
 }
 
+/* Author of the comment in the item page */
 .commentTitle {
 	font-size: 140%;
 	color: #66666d;
@@ -399,32 +442,38 @@ body, html {
     overflow: hidden;
 }
 
+/* Star rating for the item page comment */
 .commentRating {
 	display: inline-block;
 	margin-right: 10px;
 }
 
+/* Size of the item page comment stars */
 .commentRating img {
 	width: 18px;
 	height: 18px;
 }
 
+/* Div for the item page comment date */
 .commentDate {
 	display: inline-block;
 }
 
+/* Comment date text in the item page */
 .commentDate span {
-	color: #999c9c;
+	color: #6c6e6e;
 }
 
+/* Body of the comment in the item page */
 .comment{
 	display: block;
 	font-size: 95%;
-	color: #999c9c;
+	color: #6c6e6e;
 	margin-top: 4%;
 	overflow: hidden;
 }
 
+/* Div for the comment submission form in the item page */
 #commentBox {
 	background-color: white;
 	width: 92%;
@@ -435,11 +484,13 @@ body, html {
 	padding-right: 10px;
 }
 
+/* Comment form in the item page */
 #commentBox form {
 	width: 100%;
 	height: 100%;
 }
 
+/* Text area where the item page comment body can be entered */
 #commentArea {
 	height: 50%;
 	width: 96%;
@@ -454,6 +505,7 @@ body, html {
 	resize: none;
 }
 
+/* Submit button for the item page comments */
 #commentSubmitButton {
 	border: 0;
 	width: 60px;
@@ -467,6 +519,8 @@ body, html {
 	margin-right: 10px;
 }
 
+/* Div that creates the white area around the body content
+ of the search, login and register pages */
 #whiteBox {
     margin-left: auto;
     margin-right: auto;
@@ -481,6 +535,8 @@ body, html {
     text-align: center;
 }
 
+/* The large 'Login', 'Register' and 'Search by' texts
+ that appear on their respective pages */
 #titleText {
     margin-left: auto;
     margin-right: auto;
@@ -488,6 +544,7 @@ body, html {
     color: #808080;
 }
 
+/* The email field in the login page */
 #loginFormTop {
     margin-top: 5%;
     margin-bottom: 1%;
@@ -503,6 +560,23 @@ body, html {
 	padding-left: 10px;
 }
 
+/* The first and last name input fields on the register page */
+.loginFormHalf {
+    padding-left: 10px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 50px;
+    width: 25.7%;
+    min-width: 154px;
+    border: #d3d3d3 solid thin;
+    border-radius: 5px;
+    background-color: #efefef;
+    font-size: 120%;
+}
+
+/* All other login & register input fields */
 .loginForm {
     margin-top: 1%;
     margin-bottom: 1%;
@@ -518,21 +592,7 @@ body, html {
 	padding-left: 10px;
 }
 
-.loginFormHalf {
-	padding-left: 10px;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    margin-left: 2%;
-    margin-right: 2%;
-    height: 50px;
-    width: 25.7%;
-    min-width: 154px;
-    border: #d3d3d3 solid thin;
-    border-radius: 5px;
-    background-color: #efefef;
-    font-size: 120%;
-}
-
+/* Log in & register button on their respective pages */
 #loginButton {
     margin-left: auto;
     margin-right: auto;
@@ -549,21 +609,27 @@ body, html {
     font-size: 110%;
 }
 
+/* The 'or Log in' and 'or register' text that appears
+ beside the login button */
 #loginOrRegisterText {
     font-size: 100%;
     position: relative;
 }
 
+/* Style for if the login/register text has already been clicked */
 #loginOrRegisterText a:link, a:visited {
     color: #66666d;
 }
 
+/* Form submissiion error text for login & register pages */
 .errorText {
     font-size: 110%;
     color: red;
     display: none;
 }
 
+
+/* Footer content on all pages */
 #footer {
     text-align: center;
     margin-top: 10px;
@@ -571,9 +637,10 @@ body, html {
 	height: 2%;
 }
 
+/* Copyright text for the footer */
 #footerText {
     font-size: 70%;
-    color: #999c9c;
+    color: #6c6e6e;
     margin-left: auto;
     margin-right: auto;
 }

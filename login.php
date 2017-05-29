@@ -1,6 +1,8 @@
 <?php
     require_once 'functions.php';
+    // Check if the user is accessing the page when already logged in
     if (!isset($_SESSION['user'])) {
+        // Only validate if all the fields are set
         if (isset($_POST['emailForm']) && isset($_POST['passwordForm'])) {
             
             // Perform the validation

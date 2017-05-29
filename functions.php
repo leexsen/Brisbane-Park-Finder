@@ -9,6 +9,7 @@
 		return new PDO('mysql:host=localhost;dbname=parkfinder', 'root', '123456');
 	}
     
+    // Disconnects from the fastapps database
 	function disconnectDB($db)
 	{
 		$db = null;

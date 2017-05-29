@@ -30,10 +30,11 @@
 
     <div id="loginLink">
         <?php
+            // Change the login text and link if the user is already logged in
             if (isset($_SESSION['user'])) {
-                echo '<a href="logout.php">Log Out</a>';
+                echo '<a href="logout.php">Log out</a>';
             } else {
-                echo '<a href="login.php">Log In</a>';
+                echo '<a href="login.php">Log in</a>';
             }
         ?>
 	</div>

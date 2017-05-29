@@ -1,6 +1,8 @@
 <?php
     require_once 'functions.php';
+    // Check if the user is accessing the page when already logged in
     if (!isset($_SESSION['user'])) {
+        // Only validate if all fields are set
         if (isset($_POST['fNameForm']) && isset($_POST['lNameForm']) && isset($_POST['emailForm']) && isset($_POST['passwordForm']) && isset($_POST['confirmForm']) && isset($_POST['dateForm'])) {
             // Perform the validation
             require_once 'formValidation.php';

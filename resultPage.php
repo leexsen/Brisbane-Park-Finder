@@ -10,7 +10,8 @@
     <body>
         <?php
 			require_once 'header.php';
-
+            
+            // Set the arguments for the search parks function
 			if (isset($_GET['submit'])) {
 				$type = $_GET['typeSelector'];
 				$value = urldecode($_GET['value']);
@@ -20,6 +21,7 @@
 				$value = "";
 			}
 			
+            // Gte the results of the search
 			echo '<div id="contentList">';
 				searchParks($type, $value);
 			echo '</div>';

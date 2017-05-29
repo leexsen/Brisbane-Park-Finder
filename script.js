@@ -3,7 +3,7 @@ name_typeSelector= 'typeSelector_name';
 name_suburbSelector = 'suburbSelector_name';
 name_ratingSelector = 'ratingSelector_name';
 
-// the file path
+// Image file path
 filledStar = 'imgs/filledStar.svg';
 unfilledStar = 'imgs/unfilledStar.svg';
 
@@ -14,7 +14,7 @@ function initMap() {
                               zoom: 12});
     
     markers = showMapMarkers();
-    // set map center to the postion of the first result
+    // Set map center to the postion of the first result
     map.center = markers[0].position;
 }
 
@@ -77,32 +77,38 @@ function typeSelectorChanged()
     }
 }
 
+// Show the suburb selector field
 function showSuburbSelector()
 {
     document.getElementsByClassName(name_suburbSelector)[0].style.display = 'inline-block';
 }
 
+// Hide the suburb selector field
 function hideSuburbSelector()
 {
     document.getElementsByClassName(name_suburbSelector)[0].style.display = 'none';
 }
 
+// Show the rating selector field
 function showRatingSelector()
 {
     document.getElementsByClassName(name_ratingSelector)[0].style.display = 'inline-block';
 }
 
+// Hide the rating selector field
 function hideRatingSelector()
 {
     document.getElementsByClassName(name_ratingSelector)[0].style.display = 'none';
 }
 
+// SHow the search bar
 function showSearchBar()
 {
     document.getElementsByClassName(name_searchBar)[0].style.display = 'inline-block';
     document.getElementsByClassName(name_searchBar)[0].placeholder = ' Search parks';
 }
 
+// Hide the search bar
 function hideSearchBar()
 {
     document.getElementsByClassName(name_searchBar)[0].style.display = 'none';
@@ -119,12 +125,13 @@ function getLocation() {
     }
 }
 
+// Display the coordinates in the search bar
 function showPosition(position) {
     var searchBar = document.getElementsByClassName(name_searchBar)[0];
     searchBar.value = position.coords.latitude + "," + position.coords.longitude;
 }
 
-
+// Show the appropriate error message
 function showError(error) {
     var searchBar = document.getElementsByClassName(name_searchBar)[0];
     var msg = "";
@@ -146,7 +153,7 @@ function showError(error) {
     searchBar.placeholder = msg;
 }
 
-/* when a unfilled rating star with a index is clicked, all stars before
+/* When a unfilled rating star with a index is clicked, all stars before
  * it will be replaced with filled rating stars (including itself).
  *
  * ratingImg: the rating star image clicked
@@ -168,7 +175,7 @@ function ratingStarClicked(ratingImg, index)
     parent.value = index;
 }
 
-/* reset stars to default
+/* Reset stars to default
  *
  * parent: the parent of stars need to be reseted
  */
@@ -201,7 +208,7 @@ function searchSubmit(form)
 		return false;
 	}
     
-    // remove these elements from form so that the data from them won't be sent
+    // Remove these elements from form so that the data from them won't be sent
     form.removeChild(ratingSelector);
     form.removeChild(suburbSelector);
     
@@ -222,7 +229,7 @@ function commentSubmit(form)
     
     rating.value = ratingValue.value;
     
-    // remove these elements from form so that the data from them won't be sent
+    // Remove these elements from form so that the data from them won't be sent
     form.removeChild(ratingValue);
     
     return true;
